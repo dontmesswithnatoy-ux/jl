@@ -1,0 +1,3774 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0b0d12">
+    <meta name="description"
+        content="Jhon Luis Carlos - IT Student Portfolio featuring web development, database systems, problem solving, career planning, and Arduino IoT projects.">
+    <title>Jhon Luis Carlos | IT Student Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@500;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0b0d12;
+            --bg-secondary: #0e131d;
+            --card: #101722;
+            --card-light: #141e2c;
+            --border: rgba(0, 195, 255, .17);
+            --border-hover: rgba(0, 195, 255, .6);
+            --accent: #00c3ff;
+            --accent-2: #008cff;
+            --text-primary: #f3f7ff;
+            --text-secondary: #a4b2c8;
+            --muted: #708097;
+            --font-main: "Inter", sans-serif;
+            --font-heading: "Orbitron", sans-serif;
+            --font-code: "JetBrains Mono", monospace;
+            --shadow: 0 16px 45px rgba(0, 0, 0, .25);
+            --glow: 0 0 25px rgba(0, 195, 255, .13);
+            --radius: 16px;
+            --nav-height: 76px;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--nav-height) + 18px);
+        }
+
+        body {
+            background: radial-gradient(ellipse at 10% 5%, rgba(0, 120, 255, .07), transparent 34%), radial-gradient(ellipse at 90% 40%, rgba(0, 195, 255, .035), transparent 35%), var(--bg);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 15px;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        img,
+        video {
+            display: block;
+            max-width: 100%;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea {
+            font: inherit;
+        }
+
+        button,
+        a {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        button {
+            color: inherit;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible,
+        textarea:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 4px;
+        }
+
+        ::selection {
+            background: rgba(0, 195, 255, .3);
+            color: white;
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 44px));
+            margin-inline: auto;
+        }
+
+        .section {
+            position: relative;
+            padding: 100px 0;
+            scroll-margin-top: var(--nav-height);
+        }
+
+        .section:nth-of-type(even) {
+            background: rgba(255, 255, 255, .008);
+        }
+
+        .neon-text {
+            color: var(--accent);
+            text-shadow: 0 0 25px rgba(0, 195, 255, .16);
+        }
+
+        .section-header {
+            max-width: 760px;
+            margin: 0 auto 46px;
+            text-align: center;
+        }
+
+        .section-tag {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: var(--accent);
+            font-family: var(--font-code);
+            font-size: .78rem;
+            letter-spacing: 1.2px;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(1.7rem, 4vw, 2.5rem);
+            line-height: 1.35;
+            margin-bottom: 14px;
+            letter-spacing: -.6px;
+        }
+
+        .section-desc {
+            max-width: 650px;
+            margin-inline: auto;
+            color: var(--text-secondary);
+            line-height: 1.9;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            height: var(--nav-height);
+            background: rgba(11, 13, 18, .9);
+            border-bottom: 1px solid rgba(0, 195, 255, .12);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            transition: box-shadow .3s ease, background .3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(11, 13, 18, .97);
+            box-shadow: 0 8px 28px rgba(0, 0, 0, .25);
+        }
+
+        .nav-container {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            flex-shrink: 0;
+            font-weight: 800;
+            font-size: 1rem;
+            letter-spacing: -.4px;
+        }
+
+        .logo-badge {
+            display: grid;
+            place-items: center;
+            width: 39px;
+            height: 39px;
+            border: 1px solid rgba(0, 195, 255, .5);
+            border-radius: 10px;
+            color: var(--accent);
+            background: rgba(0, 195, 255, .07);
+            font-family: var(--font-code);
+            font-weight: 700;
+            box-shadow: var(--glow);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 4px;
+            list-style: none;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 9px 10px;
+            border-radius: 7px;
+            color: var(--text-secondary);
+            font-size: .77rem;
+            font-weight: 600;
+            white-space: nowrap;
+            transition: color .2s ease, background .2s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent);
+            background: rgba(0, 195, 255, .075);
+        }
+
+        .mobile-toggle {
+            display: none;
+            width: 43px;
+            height: 43px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: var(--card);
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 1.35rem;
+        }
+
+        .hero {
+            position: relative;
+            min-height: calc(88vh - var(--nav-height));
+            display: flex;
+            align-items: center;
+            padding: 85px 0 90px;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 5%;
+            right: -12%;
+            width: 520px;
+            height: 520px;
+            border: 1px solid rgba(0, 195, 255, .07);
+            border-radius: 50%;
+            box-shadow: 0 0 0 55px rgba(0, 195, 255, .018), 0 0 0 110px rgba(0, 195, 255, .012);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(280px, .7fr);
+            align-items: center;
+            gap: 75px;
+        }
+
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 24px;
+            padding: 8px 13px;
+            border: 1px solid rgba(0, 195, 255, .22);
+            border-radius: 30px;
+            background: rgba(0, 195, 255, .055);
+            color: #c8f4ff;
+            font-family: var(--font-code);
+            font-size: .72rem;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #00e5a0;
+            box-shadow: 0 0 12px rgba(0, 229, 160, .8);
+            animation: pulse 1.8s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: .55;
+                transform: scale(.8);
+            }
+        }
+
+        .hero-subtitle {
+            color: var(--text-secondary);
+            font-size: .9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(2.1rem, 5vw, 3.6rem);
+            line-height: 1.32;
+            letter-spacing: -1px;
+            margin-bottom: 20px;
+        }
+
+        .hero-dynamic-text {
+            display: inline-block;
+            color: var(--accent);
+            min-height: 1.4em;
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.95;
+            margin-bottom: 29px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 9px;
+            min-height: 45px;
+            padding: 12px 18px;
+            border: 1px solid transparent;
+            border-radius: 9px;
+            font-size: .82rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .btn-neon {
+            color: #06111a;
+            background: linear-gradient(110deg, #00c3ff, #54e1ff);
+            box-shadow: 0 6px 22px rgba(0, 195, 255, .15);
+        }
+
+        .btn-neon:hover {
+            box-shadow: 0 9px 28px rgba(0, 195, 255, .28);
+        }
+
+        .btn-outline,
+        .btn-resume {
+            color: var(--text-primary);
+            border-color: var(--border);
+            background: rgba(255, 255, 255, .025);
+        }
+
+        .btn-outline:hover,
+        .btn-resume:hover {
+            border-color: var(--accent);
+            background: rgba(0, 195, 255, .07);
+        }
+
+        .student-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            margin-top: 35px;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: var(--text-secondary);
+            font-size: .82rem;
+        }
+
+        .meta-item svg {
+            color: var(--accent);
+            flex-shrink: 0;
+        }
+
+        .hero-avatar-wrapper {
+            display: flex;
+            justify-content: center;
+        }
+
+        .avatar-frame {
+            position: relative;
+            width: min(100%, 350px);
+            aspect-ratio: 4/5;
+            padding: 10px;
+            border: 1px solid rgba(0, 195, 255, .4);
+            border-radius: 28px;
+            background: linear-gradient(145deg, rgba(0, 195, 255, .13), rgba(0, 140, 255, .02));
+            box-shadow: 0 20px 75px rgba(0, 0, 0, .35), 0 0 45px rgba(0, 195, 255, .07);
+            transform: rotate(1.5deg);
+            transition: transform .4s ease;
+        }
+
+        .avatar-frame:hover {
+            transform: rotate(0) translateY(-5px);
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 20px;
+            background: var(--card);
+        }
+
+        .avatar-status-pill {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            width: max-content;
+            max-width: calc(100% - 30px);
+            padding: 11px 17px;
+            border: 1px solid rgba(0, 195, 255, .25);
+            border-radius: 30px;
+            background: rgba(11, 13, 18, .93);
+            backdrop-filter: blur(10px);
+            font-size: .76rem;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.4fr .8fr;
+            gap: 25px;
+            align-items: stretch;
+        }
+
+        .about-card,
+        .stat-box,
+        .skills-highlight-card,
+        .skill-card,
+        .project-card,
+        .contact-info-card,
+        .contact-form-card,
+        .interview-player-card,
+        .interview-sidebar-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: linear-gradient(145deg, rgba(18, 27, 40, .95), rgba(13, 19, 29, .95));
+            box-shadow: var(--shadow);
+        }
+
+        .about-card {
+            padding: 32px;
+        }
+
+        .about-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+        }
+
+        .about-text {
+            color: var(--text-secondary);
+            line-height: 2;
+            white-space: pre-line;
+        }
+
+        .arch-callout {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-top: 27px;
+            padding: 19px;
+            border: 1px solid rgba(0, 195, 255, .16);
+            border-radius: 12px;
+            background: rgba(0, 195, 255, .04);
+        }
+
+        .arch-icon {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            border-radius: 10px;
+            background: rgba(0, 195, 255, .1);
+            font-size: 1.2rem;
+        }
+
+        .arch-text h4 {
+            margin-bottom: 5px;
+            font-size: .95rem;
+        }
+
+        .arch-text p {
+            color: var(--text-secondary);
+            font-size: .85rem;
+            line-height: 1.8;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .stat-box {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 23px 28px;
+            transition: border-color .25s ease, transform .25s ease;
+        }
+
+        .stat-box:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+
+        .stat-num {
+            color: var(--accent);
+            font-family: var(--font-heading);
+            font-size: 1.9rem;
+            font-weight: 800;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: .82rem;
+        }
+
+        .skills-highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 17px;
+            margin-bottom: 34px;
+        }
+
+        .skills-highlight-card {
+            padding: 22px;
+            transition: transform .3s ease, border-color .3s ease;
+        }
+
+        .skills-highlight-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+        }
+
+        .skills-highlight-icon-box {
+            display: grid;
+            place-items: center;
+            width: 46px;
+            height: 46px;
+            margin-bottom: 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(0, 195, 255, .06);
+            font-size: 1.35rem;
+        }
+
+        .skills-highlight-title {
+            font-weight: 700;
+            margin-bottom: 8px;
+            font-size: .93rem;
+        }
+
+        .skills-highlight-desc {
+            color: var(--text-secondary);
+            font-size: .81rem;
+            line-height: 1.8;
+        }
+
+        .skill-filters,
+        .project-filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 9px;
+            margin: 0 auto 28px;
+        }
+
+        .skill-filter-btn,
+        .filter-btn {
+            padding: 10px 15px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .02);
+            color: var(--text-secondary);
+            font-size: .78rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+
+        .skill-filter-btn:hover,
+        .filter-btn:hover,
+        .skill-filter-btn.active,
+        .filter-btn.active {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(0, 195, 255, .08);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .skill-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 25px;
+            padding: 23px;
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--border-hover);
+            box-shadow: var(--glow);
+        }
+
+        .skill-card.is-hidden,
+        .project-card.is-hidden {
+            display: none;
+        }
+
+        .skill-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+        }
+
+        .skill-icon-wrap {
+            display: grid;
+            place-items: center;
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+            border-radius: 11px;
+            background: rgba(0, 195, 255, .08);
+            border: 1px solid var(--border);
+            font-size: 1.25rem;
+        }
+
+        .skill-header-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .skill-category {
+            color: var(--text-secondary);
+            font-size: .7rem;
+        }
+
+        .skill-badge-level {
+            width: max-content;
+            padding: 3px 7px;
+            border-radius: 5px;
+            background: rgba(0, 229, 160, .08);
+            color: #68e8b6;
+            font-size: .65rem;
+        }
+
+        .skill-project-badge {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: var(--accent);
+            font-size: .7rem;
+        }
+
+        .skill-name {
+            margin-bottom: 8px;
+            font-size: 1.06rem;
+        }
+
+        .skill-desc {
+            color: var(--text-secondary);
+            font-size: .82rem;
+            line-height: 1.8;
+        }
+
+        .skill-pct-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 9px;
+            color: var(--text-secondary);
+            font-size: .72rem;
+        }
+
+        .skill-pct {
+            color: var(--accent);
+            font-family: var(--font-code);
+        }
+
+        .progress-track {
+            height: 5px;
+            overflow: hidden;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--accent-2), var(--accent));
+            box-shadow: 0 0 12px rgba(0, 195, 255, .3);
+            transition: width 1.2s cubic-bezier(.2, .7, .2, 1);
+        }
+
+        .skill-applied-tag {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--accent);
+            font-size: .74rem;
+            font-weight: 600;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            align-items: stretch;
+            gap: 22px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            min-width: 0;
+            transition: transform .35s ease, border-color .35s ease, box-shadow .35s ease;
+            animation: card-in .5s ease both;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, .3), var(--glow);
+        }
+
+        @keyframes card-in {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .project-img-wrapper {
+            position: relative;
+            height: 205px;
+            overflow: hidden;
+            background: var(--card-light);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .6s ease;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.055);
+        }
+
+        .project-img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(9, 13, 20, .5), transparent 55%);
+            pointer-events: none;
+        }
+
+        .project-body {
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            padding: 23px;
+        }
+
+        .project-header {
+            flex: 1;
+        }
+
+        .project-cat-badge {
+            display: inline-block;
+            padding: 5px 9px;
+            margin-bottom: 13px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            background: rgba(0, 195, 255, .05);
+            color: var(--accent);
+            font-size: .66rem;
+            font-family: var(--font-code);
+        }
+
+        .project-title {
+            margin-bottom: 7px;
+            font-size: 1.12rem;
+            line-height: 1.5;
+        }
+
+        .project-tagline {
+            margin-bottom: 13px;
+            color: var(--accent);
+            font-size: .75rem;
+            font-weight: 600;
+        }
+
+        .project-desc {
+            color: var(--text-secondary);
+            font-size: .82rem;
+            line-height: 1.85;
+        }
+
+        .project-footer {
+            margin-top: 23px;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+            margin-bottom: 21px;
+        }
+
+        .tech-tag {
+            padding: 5px 8px;
+            border: 1px solid rgba(255, 255, 255, .075);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, .025);
+            color: #c0ccdd;
+            font-family: var(--font-code);
+            font-size: .64rem;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-demo,
+        .btn-code {
+            display: inline-flex;
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 12px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--accent);
+            font-size: .78rem;
+            font-weight: 700;
+            transition: all .25s ease;
+        }
+
+        .btn-demo {
+            background: rgba(0, 195, 255, .07);
+        }
+
+        .btn-demo:hover,
+        .btn-code:hover {
+            border-color: var(--accent);
+            background: rgba(0, 195, 255, .14);
+            transform: translateY(-2px);
+        }
+
+        .btn-code {
+            color: var(--text-secondary);
+        }
+
+        .portfolio-extra-section {
+            overflow: hidden;
+        }
+
+        .extra-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .extra-card {
+            padding: 26px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: rgba(13, 21, 34, .88);
+            transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+        }
+
+        .extra-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            box-shadow: 0 12px 35px rgba(0, 195, 255, .08);
+        }
+
+        .extra-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 18px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: rgba(0, 195, 255, .08);
+            font-size: 1.45rem;
+        }
+
+        .extra-tag {
+            display: inline-block;
+            padding: 6px 10px;
+            margin-bottom: 14px;
+            border: 1px solid rgba(0, 195, 255, .25);
+            border-radius: 6px;
+            color: var(--accent);
+            font-family: var(--font-code);
+            font-size: .68rem;
+        }
+
+        .extra-card h3 {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .extra-card p {
+            color: var(--text-secondary);
+            line-height: 1.85;
+            font-size: .88rem;
+        }
+
+        .extra-list {
+            display: grid;
+            gap: 14px;
+            padding: 0;
+            margin: 20px 0 0;
+            list-style: none;
+        }
+
+        .extra-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .extra-list li::before {
+            content: "▹";
+            flex-shrink: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .basic-skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 18px;
+        }
+
+        .basic-skill-list span {
+            padding: 7px 10px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: rgba(0, 195, 255, .05);
+            color: var(--text-primary);
+            font-size: .76rem;
+        }
+
+        .reflection-card {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .reflection-card p {
+            margin-bottom: 16px;
+        }
+
+        .reflection-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .career-timeline {
+            display: grid;
+            gap: 18px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .career-step {
+            display: grid;
+            grid-template-columns: 56px minmax(0, 1fr);
+            gap: 18px;
+            align-items: start;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: rgba(13, 21, 34, .88);
+            transition: border-color .25s ease, transform .25s ease;
+        }
+
+        .career-step:hover {
+            border-color: var(--border-hover);
+            transform: translateX(4px);
+        }
+
+        .career-step-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border: 1px solid rgba(0, 195, 255, .35);
+            border-radius: 12px;
+            background: rgba(0, 195, 255, .08);
+            color: var(--accent);
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+
+        .career-step h3 {
+            margin-bottom: 8px;
+            font-size: 1.08rem;
+        }
+
+        .career-step p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: .88rem;
+        }
+
+        .interview-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(260px, .8fr);
+            gap: 23px;
+            align-items: start;
+        }
+
+        .interview-player-card {
+            overflow: hidden;
+        }
+
+        .interview-player-header {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 18px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .interview-player-header-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .interview-live-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #ff5267;
+            box-shadow: 0 0 10px rgba(255, 82, 103, .6);
+        }
+
+        .interview-player-label {
+            font-family: var(--font-code);
+            font-size: .73rem;
+            font-weight: 600;
+        }
+
+        .interview-player-meta {
+            color: var(--text-secondary);
+            font-size: .72rem;
+        }
+
+        .interview-video-wrapper {
+            position: relative;
+            overflow: hidden;
+            background: #05080c;
+            aspect-ratio: 16/9;
+        }
+
+        .interview-video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #05080c;
+        }
+
+        .interview-play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            background: linear-gradient(0deg, rgba(0, 0, 0, .6), rgba(0, 0, 0, .12));
+            cursor: pointer;
+            transition: background .25s ease;
+        }
+
+        .interview-play-overlay:hover {
+            background: rgba(0, 0, 0, .45);
+        }
+
+        .interview-play-btn {
+            display: grid;
+            place-items: center;
+            width: 68px;
+            height: 68px;
+            border: 1px solid rgba(0, 195, 255, .8);
+            border-radius: 50%;
+            background: rgba(0, 195, 255, .16);
+            color: var(--accent);
+            box-shadow: 0 0 35px rgba(0, 195, 255, .18);
+            transition: transform .25s ease, background .25s ease;
+        }
+
+        .interview-play-overlay:hover .interview-play-btn {
+            transform: scale(1.1);
+            background: rgba(0, 195, 255, .27);
+        }
+
+        .interview-play-label {
+            color: white;
+            font-size: .8rem;
+            font-weight: 600;
+        }
+
+        .interview-player-footer {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 15px 19px;
+            color: var(--text-secondary);
+            font-size: .7rem;
+        }
+
+        .interview-footer-item span {
+            color: var(--accent);
+            margin-right: 5px;
+        }
+
+        .interview-sidebar {
+            display: grid;
+            gap: 17px;
+        }
+
+        .interview-sidebar-card {
+            padding: 22px;
+        }
+
+        .interview-sidebar-title {
+            margin-bottom: 17px;
+            font-size: .9rem;
+        }
+
+        .interview-topics {
+            display: grid;
+            gap: 15px;
+            list-style: none;
+        }
+
+        .interview-topic-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            color: var(--text-secondary);
+            font-size: .79rem;
+            line-height: 1.65;
+        }
+
+        .interview-topic-num {
+            color: var(--accent);
+            font-family: var(--font-code);
+            font-size: .72rem;
+        }
+
+        .interview-highlights {
+            display: grid;
+            gap: 17px;
+        }
+
+        .interview-highlight-item {
+            display: grid;
+            grid-template-columns: 31px minmax(0, 1fr);
+            align-items: center;
+            gap: 10px;
+        }
+
+        .interview-highlight-icon {
+            font-size: 1.15rem;
+        }
+
+        .interview-highlight-label {
+            margin-bottom: 7px;
+            color: var(--text-secondary);
+            font-size: .74rem;
+        }
+
+        .interview-highlight-bar {
+            height: 5px;
+            overflow: hidden;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, .07);
+        }
+
+        .interview-highlight-fill {
+            height: 100%;
+            border-radius: 8px;
+            background: linear-gradient(90deg, var(--accent-2), var(--accent));
+        }
+
+        .interview-resume-cta {
+            width: 100%;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: .85fr 1.15fr;
+            gap: 23px;
+            align-items: start;
+        }
+
+        .contact-info-card,
+        .contact-form-card {
+            padding: 29px;
+        }
+
+        .contact-info-card h3 {
+            margin-bottom: 24px;
+            font-size: 1.3rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .contact-method:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-icon {
+            display: grid;
+            place-items: center;
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+            border: 1px solid var(--border);
+            border-radius: 11px;
+            background: rgba(0, 195, 255, .06);
+            font-size: 1.1rem;
+        }
+
+        .contact-label {
+            color: var(--muted);
+            font-size: .73rem;
+            margin-bottom: 3px;
+        }
+
+        .contact-value {
+            color: var(--text-primary);
+            font-size: .86rem;
+            overflow-wrap: anywhere;
+        }
+
+        a.contact-value:hover {
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 19px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+            font-size: .79rem;
+            font-weight: 600;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid rgba(255, 255, 255, .1);
+            border-radius: 9px;
+            background: rgba(4, 8, 14, .55);
+            color: var(--text-primary);
+            outline: none;
+            font-size: .83rem;
+            transition: border-color .2s ease, box-shadow .2s ease;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: #65738a;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 195, 255, .08);
+        }
+
+        .form-textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .toast-msg {
+            display: none;
+            margin-bottom: 18px;
+            padding: 12px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: rgba(0, 195, 255, .06);
+            color: var(--accent);
+            font-size: .82rem;
+            overflow-wrap: anywhere;
+        }
+
+        .footer {
+            padding: 26px 0;
+            border-top: 1px solid var(--border);
+            background: rgba(4, 7, 12, .8);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: .76rem;
+        }
+
+        .footer-text span {
+            color: var(--accent);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-link {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--border);
+            border-radius: 9px;
+            color: var(--text-secondary);
+            transition: all .25s ease;
+        }
+
+        .social-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(0, 195, 255, .07);
+            transform: translateY(-3px);
+        }
+
+        .resume-modal-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, .82);
+            backdrop-filter: blur(10px);
+        }
+
+        .resume-modal-overlay.active {
+            display: flex;
+            animation: modal-fade .2s ease;
+        }
+
+        @keyframes modal-fade {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .resume-modal-container {
+            display: flex;
+            flex-direction: column;
+            width: min(1000px, 100%);
+            max-height: 92vh;
+            overflow: hidden;
+            border: 1px solid var(--border-hover);
+            border-radius: 14px;
+            background: var(--bg-secondary);
+            box-shadow: 0 25px 100px rgba(0, 0, 0, .6);
+        }
+
+        .resume-modal-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 15px 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .resume-modal-topbar-left,
+        .resume-modal-topbar-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .resume-modal-badge {
+            padding: 5px 8px;
+            border: 1px solid var(--border);
+            border-radius: 5px;
+            color: var(--accent);
+            font-family: var(--font-code);
+            font-size: .63rem;
+        }
+
+        .resume-modal-filename {
+            color: var(--text-secondary);
+            font-size: .75rem;
+        }
+
+        .resume-btn-zoom,
+        .resume-btn-download,
+        .resume-btn-close {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 34px;
+            padding: 7px 11px;
+            border: 1px solid var(--border);
+            border-radius: 7px;
+            background: rgba(255, 255, 255, .03);
+            color: var(--text-primary);
+            font-size: .72rem;
+            cursor: pointer;
+        }
+
+        .resume-btn-download:hover,
+        .resume-btn-zoom:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .resume-btn-close {
+            width: 36px;
+            font-size: 1rem;
+        }
+
+        .resume-btn-close:hover {
+            border-color: #ff5267;
+            color: #ff5267;
+        }
+
+        .resume-modal-body {
+            overflow: auto;
+            padding: 22px;
+            background: #070a0f;
+            text-align: center;
+        }
+
+        .resume-img-wrapper {
+            display: inline-block;
+            max-width: 100%;
+            overflow: auto;
+        }
+
+        .resume-img {
+            width: auto;
+            max-width: 100%;
+            max-height: 68vh;
+            margin: auto;
+            object-fit: contain;
+            cursor: zoom-in;
+            transition: width .25s ease;
+        }
+
+        .resume-img.zoomed {
+            max-width: none;
+            max-height: none;
+            width: 1100px;
+            cursor: zoom-out;
+        }
+
+        .resume-modal-hint {
+            padding: 11px;
+            color: var(--text-secondary);
+            font-size: .72rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        kbd {
+            padding: 2px 6px;
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 4px;
+            background: rgba(255, 255, 255, .05);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity .65s ease, transform .65s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion:reduce) {
+
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        @media (max-width:1100px) {
+            .nav-links {
+                gap: 1px;
+            }
+
+            .nav-link {
+                padding: 8px 7px;
+                font-size: .7rem;
+            }
+
+            .logo {
+                font-size: .9rem;
+            }
+
+            .hero-grid {
+                gap: 45px;
+            }
+
+            .skills-highlight-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .project-card:last-child {
+                grid-column: 1/-1;
+                max-width: calc(50% - 11px);
+                width: 100%;
+                justify-self: center;
+            }
+        }
+
+        @media (max-width:850px) {
+            :root {
+                --nav-height: 70px;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: calc(100% + 1px);
+                left: 0;
+                right: 0;
+                display: none;
+                align-items: stretch;
+                flex-direction: column;
+                gap: 4px;
+                max-height: calc(100vh - var(--nav-height) - 12px);
+                overflow-y: auto;
+                padding: 14px 22px 20px;
+                border-bottom: 1px solid var(--border);
+                background: rgba(11, 13, 18, .98);
+                box-shadow: 0 20px 35px rgba(0, 0, 0, .35);
+            }
+
+            .nav-links.active {
+                display: flex;
+                animation: nav-in .2s ease;
+            }
+
+            @keyframes nav-in {
+                from {
+                    opacity: 0;
+                    transform: translateY(-7px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .nav-link {
+                padding: 12px 13px;
+                font-size: .86rem;
+            }
+
+            .hero-grid {
+                grid-template-columns: minmax(0, 1fr) minmax(220px, .7fr);
+                gap: 28px;
+            }
+
+            .hero-title {
+                font-size: clamp(2rem, 5.6vw, 3rem);
+            }
+
+            .hero-actions .btn {
+                padding: 11px 13px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+
+            .stat-box {
+                padding: 19px;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .interview-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .interview-sidebar {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .interview-resume-cta {
+                grid-column: 1/-1;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 78px 0;
+            }
+        }
+
+        @media (max-width:600px) {
+            .container {
+                width: calc(100% - 30px);
+            }
+
+            .section {
+                padding: 65px 0;
+            }
+
+            .section-header {
+                margin-bottom: 32px;
+            }
+
+            .section-title {
+                font-size: 1.7rem;
+            }
+
+            .section-desc {
+                font-size: .88rem;
+            }
+
+            .hero {
+                padding: 55px 0 65px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 38px;
+            }
+
+            .hero-content {
+                order: 1;
+            }
+
+            .hero-avatar-wrapper {
+                order: 0;
+            }
+
+            .avatar-frame {
+                width: min(72%, 270px);
+                aspect-ratio: 4/4.6;
+            }
+
+            .hero-title {
+                font-size: clamp(1.85rem, 8vw, 2.7rem);
+            }
+
+            .hero-subtitle {
+                font-size: .74rem;
+                letter-spacing: 1.4px;
+            }
+
+            .hero-desc {
+                font-size: .9rem;
+            }
+
+            .hero-actions {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .student-meta {
+                flex-direction: column;
+                gap: 12px;
+                margin-top: 25px;
+            }
+
+            .about-card {
+                padding: 22px;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-box {
+                padding: 17px 20px;
+            }
+
+            .skills-highlight-grid,
+            .skills-grid,
+            .projects-grid,
+            .extra-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card:last-child {
+                grid-column: auto;
+                max-width: none;
+            }
+
+            .project-img-wrapper {
+                height: 215px;
+            }
+
+            .skill-filters,
+            .project-filters {
+                justify-content: flex-start;
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 3px 2px 12px;
+                scrollbar-width: thin;
+            }
+
+            .skill-filter-btn,
+            .filter-btn {
+                flex-shrink: 0;
+            }
+
+            .extra-card {
+                padding: 21px;
+            }
+
+            .career-step {
+                grid-template-columns: 42px minmax(0, 1fr);
+                gap: 12px;
+                padding: 17px;
+            }
+
+            .career-step-number {
+                width: 39px;
+                height: 39px;
+                font-size: .75rem;
+            }
+
+            .interview-sidebar {
+                grid-template-columns: 1fr;
+            }
+
+            .interview-resume-cta {
+                grid-column: auto;
+            }
+
+            .interview-player-header {
+                padding: 14px;
+            }
+
+            .interview-player-meta {
+                width: 100%;
+            }
+
+            .interview-player-footer {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .contact-info-card,
+            .contact-form-card {
+                padding: 21px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .resume-modal-overlay {
+                padding: 8px;
+            }
+
+            .resume-modal-container {
+                max-height: 96vh;
+            }
+
+            .resume-modal-topbar {
+                padding: 12px;
+            }
+
+            .resume-modal-topbar-left {
+                width: 100%;
+            }
+
+            .resume-modal-filename {
+                overflow-wrap: anywhere;
+            }
+
+            .resume-modal-body {
+                padding: 12px;
+            }
+
+            .resume-img {
+                max-height: 65vh;
+            }
+        }
+
+        /* Certificate gallery and professional live-demo modals */
+        .certificates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 22px;
+            margin-top: 28px
+        }
+
+        .certificate-card {
+            border: 1px solid var(--border, rgba(255, 255, 255, .12));
+            background: var(--card, rgba(255, 255, 255, .04));
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform .25s, border-color .25s;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent, #00e5ff)
+        }
+
+        .certificate-card img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            background: #111
+        }
+
+        .certificate-card h3 {
+            font-size: 1rem;
+            margin: 14px 15px 5px
+        }
+
+        .certificate-card p {
+            margin: 0 15px 16px;
+            opacity: .72;
+            font-size: .88rem
+        }
+
+        .jl-modal {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: rgba(2, 7, 18, .84);
+            backdrop-filter: blur(14px)
+        }
+
+        .jl-modal.active {
+            display: flex;
+            animation: jlFadeIn .2s ease
+        }
+
+        .jl-modal-panel {
+            width: min(760px, 100%);
+            max-height: 92vh;
+            overflow: auto;
+            position: relative;
+            padding: 30px;
+            border: 1px solid rgba(0, 195, 255, .24);
+            border-radius: 24px;
+            background: linear-gradient(145deg, #121c2b, #0c121e 75%);
+            color: #f4f7fb;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, .58)
+        }
+
+        .jl-demo-heading {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-right: 44px;
+            margin-bottom: 8px
+        }
+
+        .jl-demo-mark {
+            display: grid;
+            place-items: center;
+            flex: 0 0 46px;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(0, 195, 255, .28);
+            border-radius: 14px;
+            background: rgba(0, 195, 255, .09);
+            font-size: 1.3rem
+        }
+
+        .jl-demo-kicker {
+            font-size: .72rem;
+            text-transform: uppercase;
+            letter-spacing: .16em;
+            color: #00c3ff;
+            font-weight: 800
+        }
+
+        .jl-modal-panel h2 {
+            margin: 0;
+            font-size: clamp(1.25rem, 3vw, 1.65rem);
+            line-height: 1.3
+        }
+
+        .jl-modal-panel .jl-intro {
+            color: #aebbd0;
+            margin: 12px 0 22px;
+            line-height: 1.65
+        }
+
+        .jl-modal-close {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(255, 255, 255, .12);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .06);
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background .2s, border-color .2s
+        }
+
+        .jl-modal-close:hover {
+            background: rgba(0, 195, 255, .15);
+            border-color: rgba(0, 195, 255, .5)
+        }
+
+        .jl-demo-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(220px, .78fr);
+            gap: 18px;
+            align-items: start
+        }
+
+        .jl-demo-card {
+            padding: 18px;
+            border: 1px solid rgba(255, 255, 255, .09);
+            border-radius: 17px;
+            background: rgba(255, 255, 255, .025)
+        }
+
+        .jl-demo-card-title {
+            font-size: .76rem;
+            text-transform: uppercase;
+            letter-spacing: .12em;
+            color: #9aacc5;
+            font-weight: 800;
+            margin-bottom: 14px
+        }
+
+        .jl-demo-field {
+            display: grid;
+            gap: 7px;
+            margin: 0 0 15px
+        }
+
+        .jl-demo-field label {
+            font-weight: 650;
+            font-size: .88rem;
+            color: #eaf2ff
+        }
+
+        .jl-demo-field select,
+        .jl-demo-field input:not([type=range]),
+        .jl-demo-field input[type=date],
+        .jl-demo-field input[type=number] {
+            width: 100%;
+            min-height: 45px;
+            padding: 10px 12px;
+            border-radius: 11px;
+            border: 1px solid #34435a;
+            background: #09111e;
+            color: #fff;
+            font: inherit;
+            outline: none
+        }
+
+        .jl-demo-field select:focus,
+        .jl-demo-field input:focus {
+            border-color: #00c3ff;
+            box-shadow: 0 0 0 3px rgba(0, 195, 255, .12)
+        }
+
+        .jl-demo-field input[type=range] {
+            width: 100%;
+            accent-color: #00c3ff
+        }
+
+        .jl-demo-checks {
+            display: grid;
+            gap: 9px;
+            margin: 4px 0 16px
+        }
+
+        .jl-demo-check {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: #c6d3e6;
+            font-size: .87rem
+        }
+
+        .jl-demo-check input {
+            accent-color: #00c3ff;
+            width: 16px;
+            height: 16px
+        }
+
+        .jl-demo-primary,
+        .jl-demo-secondary {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            min-height: 44px;
+            border: 0;
+            border-radius: 11px;
+            padding: 11px 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .18s, filter .18s
+        }
+
+        .jl-demo-primary {
+            background: linear-gradient(135deg, #00d4ff, #6b7bff);
+            color: #06101b
+        }
+
+        .jl-demo-secondary {
+            border: 1px solid #34435a;
+            background: transparent;
+            color: #dce8f8
+        }
+
+        .jl-demo-primary:hover,
+        .jl-demo-secondary:hover {
+            filter: brightness(1.08);
+            transform: translateY(-1px)
+        }
+
+        .jl-demo-actions {
+            display: flex;
+            gap: 9px;
+            flex-wrap: wrap
+        }
+
+        .jl-demo-result {
+            min-height: 160px;
+            padding: 17px;
+            border: 1px solid rgba(0, 212, 255, .24);
+            border-radius: 14px;
+            background: linear-gradient(145deg, rgba(0, 195, 255, .08), rgba(0, 140, 255, .025));
+            line-height: 1.65
+        }
+
+        .jl-demo-result-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            font-weight: 800;
+            margin-bottom: 12px
+        }
+
+        .jl-demo-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            border-radius: 999px;
+            padding: 5px 9px;
+            font-size: .72rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            background: rgba(22, 199, 132, .12);
+            color: #67efb8
+        }
+
+        .jl-demo-status::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor
+        }
+
+        .jl-demo-status.off {
+            background: rgba(255, 184, 77, .12);
+            color: #ffc16b
+        }
+
+        .jl-demo-line {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, .07);
+            font-size: .86rem;
+            color: #b8c6da
+        }
+
+        .jl-demo-line strong {
+            color: #f5f8ff;
+            text-align: right
+        }
+
+        .jl-demo-total {
+            display: flex;
+            justify-content: space-between;
+            gap: 12px;
+            align-items: center;
+            padding-top: 13px;
+            margin-top: 4px;
+            font-weight: 800
+        }
+
+        .jl-demo-total strong {
+            font-size: 1.35rem;
+            color: #00d4ff
+        }
+
+        .jl-demo-help {
+            color: #9cacc2;
+            font-size: .78rem;
+            margin-top: 12px;
+            line-height: 1.6
+        }
+
+        .jl-demo-note {
+            font-size: .78rem;
+            color: #94a6bf;
+            margin-top: 18px;
+            padding-top: 13px;
+            border-top: 1px solid rgba(255, 255, 255, .08);
+            line-height: 1.6
+        }
+
+        .jl-demo-gauge {
+            height: 10px;
+            border-radius: 99px;
+            background: #253247;
+            overflow: hidden;
+            margin: 14px 0
+        }
+
+        .jl-demo-gauge-fill {
+            height: 100%;
+            width: 26%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #00c3ff, #67efb8);
+            transition: width .2s, background .2s
+        }
+
+        .jl-certificate-viewer img {
+            max-width: min(100%, 1000px);
+            max-height: 82vh;
+            object-fit: contain;
+            border-radius: 12px
+        }
+
+        .jl-certificate-viewer .jl-modal-panel {
+            width: auto;
+            padding: 12px;
+            background: #0b1019;
+            text-align: center
+        }
+
+        .jl-certificate-viewer .jl-modal-close {
+            top: 8px;
+            right: 8px
+        }
+
+        /* Product add-on and animated Arduino dispenser cup */
+        .jl-product-chip {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 11px 12px;
+            margin: 0 0 14px;
+            border: 1px solid rgba(0, 212, 255, .2);
+            border-radius: 12px;
+            background: rgba(0, 195, 255, .045)
+        }
+
+        .jl-product-chip-icon {
+            display: grid;
+            place-items: center;
+            flex: 0 0 42px;
+            height: 42px;
+            border-radius: 11px;
+            background: rgba(0, 195, 255, .1);
+            font-size: 1.45rem
+        }
+
+        .jl-product-chip-copy {
+            display: grid;
+            gap: 2px;
+            flex: 1
+        }
+
+        .jl-product-chip-copy strong {
+            font-size: .86rem;
+            color: #f5f8ff
+        }
+
+        .jl-product-chip-copy span {
+            font-size: .75rem;
+            color: #9cacc2
+        }
+
+        .jl-product-chip-price {
+            font-weight: 800;
+            color: #00d4ff;
+            font-size: .86rem;
+            white-space: nowrap
+        }
+
+        .jl-dispenser-visual {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 28px;
+            min-height: 188px;
+            margin: 8px 0 18px;
+            padding: 18px 10px 12px;
+            border: 1px solid rgba(255, 255, 255, .08);
+            border-radius: 15px;
+            background: radial-gradient(ellipse at 50% 100%, rgba(0, 195, 255, .13), transparent 70%), rgba(4, 10, 19, .55)
+        }
+
+        .jl-dispenser-unit {
+            position: relative;
+            width: 70px;
+            height: 118px;
+            border: 2px solid #52647d;
+            border-radius: 12px 12px 8px 8px;
+            background: linear-gradient(90deg, #17263b, #273a52 48%, #101b2b);
+            box-shadow: inset 0 0 18px rgba(0, 0, 0, .4)
+        }
+
+        .jl-dispenser-unit:before {
+            content: "";
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            width: 38px;
+            height: 22px;
+            border: 1px solid rgba(0, 212, 255, .55);
+            border-radius: 5px;
+            background: rgba(0, 212, 255, .12)
+        }
+
+        .jl-dispenser-unit:after {
+            content: "AUTO WATER";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 12px;
+            text-align: center;
+            font-size: 7px;
+            letter-spacing: .07em;
+            color: #a9bdd6
+        }
+
+        .jl-dispenser-nozzle {
+            position: absolute;
+            bottom: -13px;
+            left: 28px;
+            width: 14px;
+            height: 18px;
+            border-radius: 0 0 5px 5px;
+            background: #71859d;
+            border: 1px solid #9baec3;
+            z-index: 2
+        }
+
+        .jl-water-stream {
+            position: absolute;
+            left: 33px;
+            bottom: -42px;
+            width: 4px;
+            height: 28px;
+            border-radius: 9px;
+            background: linear-gradient(#5be7ff, #009dff);
+            opacity: 0;
+            transform: scaleY(.4);
+            transform-origin: top;
+            transition: opacity .2s, transform .2s;
+            z-index: 1
+        }
+
+        .jl-dispenser-visual.is-flowing .jl-water-stream {
+            opacity: 1;
+            transform: scaleY(1);
+            animation: jlWaterFlow .35s linear infinite alternate
+        }
+
+        .jl-cup-wrap {
+            position: relative;
+            width: 65px;
+            height: 79px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center
+        }
+
+        .jl-demo-cup {
+            position: relative;
+            width: 53px;
+            height: 67px;
+            overflow: hidden;
+            clip-path: polygon(4% 0, 96% 0, 84% 100%, 16% 100%);
+            border: 2px solid #c9d8e9;
+            border-top: 3px solid #f1f7ff;
+            border-radius: 4px 4px 10px 10px;
+            background: linear-gradient(90deg, rgba(255, 255, 255, .18), rgba(255, 255, 255, .04) 45%, rgba(255, 255, 255, .2));
+            box-shadow: 0 8px 18px rgba(0, 0, 0, .3)
+        }
+
+        .jl-demo-cup:before {
+            content: "";
+            position: absolute;
+            z-index: 3;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 5px;
+            background: rgba(255, 255, 255, .5)
+        }
+
+        .jl-cup-water {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 0;
+            background: linear-gradient(90deg, rgba(0, 143, 255, .75), rgba(80, 226, 255, .85), rgba(0, 143, 255, .65));
+            transition: height .45s ease
+        }
+
+        .jl-cup-water:before {
+            content: "";
+            position: absolute;
+            left: -10%;
+            top: 0;
+            width: 120%;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(197, 248, 255, .8);
+            animation: jlWaterRipple .8s ease-in-out infinite alternate
+        }
+
+        .jl-cup-label {
+            position: absolute;
+            z-index: 4;
+            bottom: 18px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: 7px;
+            letter-spacing: .05em;
+            font-weight: 900;
+            color: rgba(255, 255, 255, .8);
+            pointer-events: none
+        }
+
+        .jl-cup-caption {
+            position: absolute;
+            bottom: -18px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            font-size: .68rem;
+            color: #9cacc2;
+            white-space: nowrap
+        }
+
+        .jl-dispenser-state {
+            font-size: .75rem;
+            color: #9cacc2;
+            text-align: center;
+            margin: 0 0 10px
+        }
+
+        .jl-dispenser-state strong {
+            color: #00d4ff
+        }
+
+        @keyframes jlWaterFlow {
+            from {
+                opacity: .55
+            }
+
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes jlWaterRipple {
+            from {
+                transform: translateX(-3px)
+            }
+
+            to {
+                transform: translateX(3px)
+            }
+        }
+
+        @keyframes jlFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @media(max-width:650px) {
+            .jl-modal {
+                padding: 10px
+            }
+
+            .jl-modal-panel {
+                padding: 23px 16px
+            }
+
+            .jl-demo-layout {
+                grid-template-columns: 1fr
+            }
+
+            .jl-demo-card {
+                padding: 15px
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr
+            }
+        }
+
+        /* Professional Arduino IoT demo dashboard */
+        .jl-iot-dashboard {
+            display: grid;
+            gap: 16px
+        }
+
+        .jl-iot-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px
+        }
+
+        .jl-iot-metric {
+            padding: 14px 15px;
+            border: 1px solid rgba(117, 155, 197, .16);
+            border-radius: 14px;
+            background: linear-gradient(145deg, rgba(20, 38, 59, .8), rgba(10, 18, 31, .9));
+            min-width: 0
+        }
+
+        .jl-iot-metric-label,
+        .jl-iot-metric-foot {
+            display: block;
+            color: #93a8c2;
+            font-size: .72rem
+        }
+
+        .jl-iot-metric strong {
+            display: block;
+            margin: 5px 0;
+            font-size: 1.65rem;
+            line-height: 1.2;
+            color: #f5f9ff;
+            font-variant-numeric: tabular-nums
+        }
+
+        .jl-iot-metric strong small {
+            font-size: .75rem;
+            color: #9fb4cc;
+            margin-left: 4px
+        }
+
+        .jl-iot-metric-foot {
+            font-size: .68rem
+        }
+
+        .jl-iot-layout {
+            grid-template-columns: minmax(0, .84fr) minmax(0, 1.16fr)
+        }
+
+        .jl-iot-range-labels {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            color: #8298b4;
+            font-size: .7rem
+        }
+
+        .jl-iot-control-note {
+            display: flex;
+            align-items: flex-start;
+            gap: 9px;
+            padding: 11px;
+            border: 1px solid rgba(0, 195, 255, .14);
+            border-radius: 11px;
+            background: rgba(0, 195, 255, .045);
+            font-size: .76rem;
+            line-height: 1.5;
+            color: #a9bdd5;
+            margin: 8px 0 16px
+        }
+
+        .jl-iot-info-icon {
+            display: grid;
+            place-items: center;
+            flex: 0 0 18px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: rgba(0, 195, 255, .16);
+            color: #55dcff;
+            font-weight: 900;
+            font-size: .7rem
+        }
+
+        .jl-iot-actions {
+            margin-top: 4px
+        }
+
+        .jl-iot-statusbar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 0 0 12px;
+            font-size: .75rem;
+            color: #c5d3e7
+        }
+
+        .jl-iot-status-dot,
+        .jl-legend-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #718198;
+            box-shadow: 0 0 0 4px rgba(113, 129, 152, .1);
+            flex: 0 0 8px
+        }
+
+        .jl-iot-status-dot.is-on {
+            background: #42e6ad;
+            box-shadow: 0 0 0 4px rgba(66, 230, 173, .12);
+            animation: jlStatusPulse 1.3s infinite
+        }
+
+        .jl-iot-sim-badge {
+            margin-left: auto;
+            border: 1px solid rgba(0, 195, 255, .22);
+            border-radius: 999px;
+            padding: 4px 7px;
+            color: #59dfff;
+            font-size: .6rem;
+            font-weight: 900;
+            letter-spacing: .1em
+        }
+
+        .jl-dispenser-visual {
+            min-height: 202px;
+            gap: 38px
+        }
+
+        .jl-dispenser-unit {
+            height: 128px
+        }
+
+        .jl-dispenser-screen {
+            position: absolute;
+            top: 14px;
+            left: 12px;
+            right: 12px;
+            display: grid;
+            gap: 3px;
+            text-align: center;
+            color: #75e7ff;
+            font-size: 6px;
+            letter-spacing: .1em
+        }
+
+        .jl-dispenser-screen strong {
+            font-size: 9px;
+            letter-spacing: .04em
+        }
+
+        .jl-dispenser-unit:before {
+            display: none
+        }
+
+        .jl-dispenser-unit:after {
+            bottom: 12px;
+            font-size: 6px
+        }
+
+        .jl-iot-fill-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #9eb1c9;
+            font-size: .74rem;
+            margin: 3px 0 7px
+        }
+
+        .jl-iot-fill-row strong {
+            color: #eaf7ff;
+            font-variant-numeric: tabular-nums
+        }
+
+        .jl-iot-fill-track {
+            height: 7px;
+            border-radius: 99px;
+            overflow: hidden;
+            background: #253247;
+            margin-bottom: 15px
+        }
+
+        .jl-iot-fill-track span {
+            display: block;
+            width: 0;
+            height: 100%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #008dff, #54e6ff);
+            transition: width .18s linear
+        }
+
+        .jl-iot-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 12px;
+            color: #91a4bd;
+            font-size: .68rem
+        }
+
+        .jl-iot-legend span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px
+        }
+
+        .jl-legend-dot.detected {
+            background: #42e6ad
+        }
+
+        .jl-legend-dot.idle {
+            background: #718198
+        }
+
+        .jl-iot-disclaimer {
+            margin-top: 0
+        }
+
+        .jl-dispenser-visual.is-detected .jl-dispenser-screen strong {
+            color: #65f0ba
+        }
+
+        .jl-dispenser-visual.is-flowing .jl-dispenser-unit {
+            border-color: #3b8caa;
+            box-shadow: 0 0 22px rgba(0, 195, 255, .12), inset 0 0 18px rgba(0, 0, 0, .4)
+        }
+
+        @keyframes jlStatusPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 4px rgba(66, 230, 173, .12)
+            }
+
+            50% {
+                box-shadow: 0 0 0 7px rgba(66, 230, 173, .04)
+            }
+        }
+
+        @media(max-width:650px) {
+            .jl-iot-metrics {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 7px
+            }
+
+            .jl-iot-metric {
+                padding: 11px 9px
+            }
+
+            .jl-iot-metric strong {
+                font-size: 1.3rem
+            }
+
+            .jl-iot-metric-label {
+                font-size: .65rem
+            }
+
+            .jl-iot-metric-foot {
+                font-size: .6rem
+            }
+
+            .jl-iot-layout {
+                grid-template-columns: 1fr
+            }
+
+            .jl-dispenser-visual {
+                gap: 28px
+            }
+        }
+
+        body.jl-modal-open {
+            overflow: hidden
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar" id="navbar">
+        <div class="container nav-container"> <a href="#hero" class="logo"> <span class="logo-badge">&lt;/&gt;</span>
+                <span>Jhon Luis <span class="neon-text">Carlos</span></span> </a> <button class="mobile-toggle"
+                id="mobile-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+                aria-controls="nav-links">☰</button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#hero" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#problem-solving" class="nav-link">Problem Solving</a></li>
+                <li><a href="#technical-skills" class="nav-link">Technical Skills</a></li>
+                <li><a href="#reflection" class="nav-link">Reflection</a></li>
+                <li><a href="#career-plan" class="nav-link">Career Plan</a></li>
+                <li><a href="#interview" class="nav-link">Interview</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="status-badge"><span class="pulse-dot"></span> Available for Opportunities</div>
+                    <h2 class="hero-subtitle">Information Technology Student</h2>
+                    <h1 class="hero-title"> Hi, I'm <span class="neon-text">Jhon Luis Carlos</span><br> <span
+                            class="hero-dynamic-text" id="dynamic-text">IT Student</span> </h1>
+                    <p class="hero-desc"> Aspiring IT professional passionate about web development, database
+                        management, and IoT automation. I enjoy creating useful systems that solve real-world problems.
+                    </p>
+                    <div class="hero-actions"> <a href="#projects" class="btn btn-neon">View 3 Featured Projects 🚀</a>
+                        <a href="#contact" class="btn btn-outline">Get In Touch ✉</a> <button type="button"
+                            class="btn btn-resume" onclick="openResumeModal()">📄 Quick View Resume</button>
+                    </div>
+                    <div class="student-meta">
+                        <div class="meta-item">🎓 <span>BS Information Technology</span></div>
+                        <div class="meta-item">📍 <span>Philippines</span></div>
+                    </div>
+                </div>
+                <div class="hero-avatar-wrapper">
+                    <div class="avatar-frame"> <img src="assets/images/profile.jpg" alt="Jhon Luis Carlos"
+                            class="avatar-img" id="profile-picture">
+                        <div class="avatar-status-pill"><span class="pulse-dot"></span> BSIT • 4th Year</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-header"> <span class="section-tag">// 01. Profile Overview</span>
+                <h2 class="section-title">About <span class="neon-text">Me</span></h2>
+                <p class="section-desc">Learn about my background, technical interests, and experience building IT
+                    projects.</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Aspiring IT Professional &amp; Systems Developer</h3>
+                    <p class="about-text"> I am a fourth-year Bachelor of Science in Information Technology student
+                        interested in web development, database systems, and hardware automation. Through my academic
+                        projects, I have gained experience designing websites, organizing data, developing system
+                        features, and working with Arduino-based devices. My goal is to continue improving my technical
+                        skills and build reliable, user-friendly systems that can help people and businesses. </p>
+                    <div class="arch-callout">
+                        <div class="arch-icon">⚡</div>
+                        <div class="arch-text">
+                            <h4>Development Approach</h4>
+                            <p>I focus on clean code, organized project structure, user-friendly interfaces, and
+                                practical solutions to common problems.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-num">3</div>
+                        <div class="stat-label">Featured IT Projects</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">4th</div>
+                        <div class="stat-label">Year BSIT Student</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">IoT</div>
+                        <div class="stat-label">Hardware Automation</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="skills">
+        <div class="container">
+            <div class="section-header"> <span class="section-tag">// 02. Project Competencies</span>
+                <h2 class="section-title">Skills Behind <span class="neon-text">The Projects</span></h2>
+                <p class="section-desc">Technical skills applied to web development, database systems, and Arduino
+                    automation.</p>
+            </div>
+            <div class="skills-highlight-grid">
+                <article class="skills-highlight-card">
+                    <div class="skills-highlight-icon-box">🛒</div>
+                    <div class="skills-highlight-title">Tapseafood E-Commerce</div>
+                    <p class="skills-highlight-desc">Product catalogs, shopping carts, order customization, and
+                        PHP-based web development.</p>
+                </article>
+                <article class="skills-highlight-card">
+                    <div class="skills-highlight-icon-box">🗄️</div>
+                    <div class="skills-highlight-title">Hotel Booking Database</div>
+                    <p class="skills-highlight-desc">Relational database design, MySQL, data validation, and booking
+                        management.</p>
+                </article>
+                <article class="skills-highlight-card">
+                    <div class="skills-highlight-icon-box">🤖</div>
+                    <div class="skills-highlight-title">Arduino IoT Automation</div>
+                    <p class="skills-highlight-desc">Ultrasonic sensors, relay switching, and automated liquid
+                        dispensing.</p>
+                </article>
+                <article class="skills-highlight-card">
+                    <div class="skills-highlight-icon-box">💻</div>
+                    <div class="skills-highlight-title">Web Development</div>
+                    <p class="skills-highlight-desc">HTML, CSS, JavaScript, PHP, responsive layouts, and version
+                        control.</p>
+                </article>
+            </div>
+            <div class="skill-filters" id="skill-filters"> <button class="skill-filter-btn active" data-filter="all">All
+                    Skills (8)</button> <button class="skill-filter-btn"
+                    data-filter="Tapseafood (E-Commerce)">E-Commerce</button> <button class="skill-filter-btn"
+                    data-filter="Hotel Booking (Database)">Database</button> <button class="skill-filter-btn"
+                    data-filter="Arduino Dispenser (IoT)">Arduino / IoT</button> <button class="skill-filter-btn"
+                    data-filter="Core Architecture">Core Skills</button> </div>
+            <div class="skills-grid" id="skills-container">
+                <article class="skill-card" data-category="Tapseafood (E-Commerce)">
+                    <div>
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap">🌐</div>
+                            <div class="skill-header-meta"><span class="skill-category">E-Commerce</span><span
+                                    class="skill-badge-level">Proficient</span></div>
+                        </div>
+                        <div class="skill-project-badge">Tapseafood E-Commerce</div>
+                        <h3 class="skill-name">HTML &amp; CSS</h3>
+                        <p class="skill-desc">Creating structured web pages and responsive user interfaces.</p>
+                    </div>
+                    <div class="skill-footer">
+                        <div class="skill-pct-row"><span>Proficiency Index</span><span class="skill-pct">85%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" data-width="85%"></div>
+                        </div><a href="#projects" class="skill-applied-tag">Applied in Tapseafood →</a>
+                    </div>
+                </article>
+                <article class="skill-card" data-category="Tapseafood (E-Commerce)">
+                    <div>
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap">⚙️</div>
+                            <div class="skill-header-meta"><span class="skill-category">E-Commerce</span><span
+                                    class="skill-badge-level">Proficient</span></div>
+                        </div>
+                        <div class="skill-project-badge">Tapseafood E-Commerce</div>
+                        <h3 class="skill-name">PHP</h3>
+                        <p class="skill-desc">Building server-side features, processing requests, and managing
+                            application logic.</p>
+                    </div>
+                    <div class="skill-footer">
+                        <div class="skill-pct-row"><span>Proficiency Index</span><span class="skill-pct">80%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" data-width="80%"></div>
+                        </div><a href="#projects" class="skill-applied-tag">Applied in Tapseafood →</a>
+                    </div>
+                </article>
+                <article class="skill-card" data-category="Hotel Booking (Database)">
+                    <div>
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap">🗄️</div>
+                            <div class="skill-header-meta"><span class="skill-category">Database</span><span
+                                    class="skill-badge-level">Proficient</span></div>
+                        </div>
+                        <div class="skill-project-badge">Hotel Booking System</div>
+                        <h3 class="skill-name">MySQL</h3>
+                        <p class="skill-desc">Designing tables, organizing records, and handling relational database
+                            information.</p>
+                    </div>
+                    <div class="skill-footer">
+                        <div class="skill-pct-row"><span>Proficiency Index</span><span class="skill-pct">80%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" data-width="80%"></div>
+                        </div><a href="#projects" class="skill-applied-tag">Applied in Hotel Booking →</a>
+                    </div>
+                </article>
+                <article class="skill-card" data-category="Hotel Booking (Database)">
+                    <div>
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap">🔄</div>
+                            <div class="skill-header-meta"><span class="skill-category">Database</span><span
+                                    class="skill-badge-level">Proficient</span></div>
+                        </div>
+                        <div class="skill-project-badge">Hotel Booking System</div>
+                        <h3 class="skill-name">Database Design</h3>
+                        <p class="skill-desc">Structuring information and maintaining relationships between application
+                            records.</p>
+                    </div>
+                    <div class="skill-footer">
+                        <div class="skill-pct-row"><span>Proficiency Index</span><span class="skill-pct">75%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" data-width="75%"></div>
+                        </div><a href="#projects" class="skill-applied-tag">Applied in Hotel Booking →</a>
+                    </div>
+                </article>
+                <article class="skill-card" data-category="Arduino Dispenser (IoT)">
+                    <div>
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap">🔌</div>
+                            <div class="skill-header-meta"><span class="skill-category">Arduino / IoT</span><span
+                                    class="skill-badge-level">Proficient</span></div>
+                        </div>
+                        <div class="skill-project-badge">Arduino Water Dispenser</div>
+                        <h3 class="skill-name">Arduino Programming</h3>
+                        <p class="skill-desc">Writing microcontroller instructions for sensors and automated hardware
+                            operations.</p>
+                    </div>
+                    <div class="skill-footer">
+                        <div class="skill-pct-row"><span>Proficiency Index</span><span class="skill-pct">75%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" data-width="75%"></div>
+                        </div><a href="#projects" class="skill-applied-tag">Applied in Arduino IoT →</a>
+                    </div>
+                </article>
+                <article class="skill-card" data-category="Arduino Dispenser (IoT)">
+                    <div>
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap">📡</div>
+                            <div class="skill-header-meta"><span class="skill-category">Arduino / IoT</span><span
+                                    class="skill-badge-level">Proficient</span></div>
+                        </div>
+                        <div class="skill-project-badge">Arduino Water Dispenser</div>
+                        <h3 class="skill-name">Sensor Integration</h3>
+                        <p class="skill-desc">Connecting sensors and output components to support automatic dispensing.
+                        </p>
+                    </div>
+                    <div class="skill-footer">
+                        <div class="skill-pct-row"><span>Proficiency Index</span><span class="skill-pct">70%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" data-width="70%"></div>
+                        </div><a href="#projects" class="skill-applied-tag">Applied in Arduino IoT →</a>
+                    </div>
+                </article>
+                <article class="skill-card" data-category="Core Architecture">
+                    <div>
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap">✨</div>
+                            <div class="skill-header-meta"><span class="skill-category">Core Architecture</span><span
+                                    class="skill-badge-level">Proficient</span></div>
+                        </div>
+                        <div class="skill-project-badge">All Projects</div>
+                        <h3 class="skill-name">JavaScript</h3>
+                        <p class="skill-desc">Adding interactive elements, client-side validation, and dynamic page
+                            behavior.</p>
+                    </div>
+                    <div class="skill-footer">
+                        <div class="skill-pct-row"><span>Proficiency Index</span><span class="skill-pct">75%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" data-width="75%"></div>
+                        </div><a href="#projects" class="skill-applied-tag">Applied in all projects →</a>
+                    </div>
+                </article>
+                <article class="skill-card" data-category="Core Architecture">
+                    <div>
+                        <div class="skill-card-header">
+                            <div class="skill-icon-wrap">🛠️</div>
+                            <div class="skill-header-meta"><span class="skill-category">Core Architecture</span><span
+                                    class="skill-badge-level">Proficient</span></div>
+                        </div>
+                        <div class="skill-project-badge">All Projects</div>
+                        <h3 class="skill-name">Problem Solving</h3>
+                        <p class="skill-desc">Identifying technical issues and developing practical solutions.</p>
+                    </div>
+                    <div class="skill-footer">
+                        <div class="skill-pct-row"><span>Proficiency Index</span><span class="skill-pct">80%</span>
+                        </div>
+                        <div class="progress-track">
+                            <div class="progress-bar" data-width="80%"></div>
+                        </div><a href="#problem-solving" class="skill-applied-tag">View problem-solving approach →</a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="certificates">
+        <div class="container">
+            <h2 class="section-title">My <span class="neon-text">Certificates</span></h2>
+            <p class="section-desc">Certificates and learning achievements. Select an image to view it in a larger
+                preview.</p>
+            <div class="certificates-grid">
+                <button type="button" class="certificate-card jl-certificate-open" data-image="assets/images/jl1.jpg"
+                    data-title="Certificate 1" aria-label="View certificate 1">
+                    <img src="assets/images/jl1.jpg" alt="Certificate 1" loading="lazy">
+                    <h3>Certificate 1</h3>
+                    <p>Click to view certificate</p>
+                </button>
+                <button type="button" class="certificate-card jl-certificate-open" data-image="assets/images/jl2.jpg"
+                    data-title="Certificate 2" aria-label="View certificate 2">
+                    <img src="assets/images/jl2.jpg" alt="Certificate 2" loading="lazy">
+                    <h3>Certificate 2</h3>
+                    <p>Click to view certificate</p>
+                </button>
+                <button type="button" class="certificate-card jl-certificate-open" data-image="assets/images/jl3.jpg"
+                    data-title="Certificate 3" aria-label="View certificate 3">
+                    <img src="assets/images/jl3.jpg" alt="Certificate 3" loading="lazy">
+                    <h3>Certificate 3</h3>
+                    <p>Click to view certificate</p>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-header"> <span class="section-tag">// 03. Featured Portfolio</span>
+                <h2 class="section-title">Key <span class="neon-text">IT Projects</span></h2>
+                <p class="section-desc">Three featured projects covering web development, database systems, and IoT
+                    automation.</p>
+            </div>
+            <div class="project-filters" id="project-filters"> <button class="filter-btn active" data-filter="all">All
+                    Projects (3)</button> <button class="filter-btn" data-filter="Web & E-Commerce">Web &amp;
+                    E-Commerce</button> <button class="filter-btn" data-filter="Database Systems">Database
+                    Systems</button> <button class="filter-btn" data-filter="IoT & Embedded Systems">IoT &amp; Embedded
+                    Systems</button> </div>
+            <div class="projects-grid" id="projects-container">
+                <article class="project-card" data-category="Web & E-Commerce">
+                    <div class="project-img-wrapper"><img src="assets/images/projects/tapseafood.jpg"
+                            alt="Tapseafood E-Commerce System" class="project-img" loading="lazy">
+                        <div class="project-img-overlay"></div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-header"><span class="project-cat-badge">Web &amp; E-Commerce</span>
+                            <h3 class="project-title">Tapseafood E-Commerce System</h3>
+                            <div class="project-tagline">Online Food Ordering and Management</div>
+                            <p class="project-desc">A web-based food ordering system that presents menu items, supports
+                                customer orders, and helps manage food products and order information.</p>
+                        </div>
+                        <div class="project-footer">
+                            <div class="tech-tags"><span class="tech-tag">HTML</span><span
+                                    class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span><span
+                                    class="tech-tag">PHP</span><span class="tech-tag">MySQL</span></div>
+                            <div class="project-actions"><button type="button" class="btn-demo jl-open-demo"
+                                    data-demo="food"><span>Live Demo ↗</span></button><a href="https://github.com/"
+                                    class="btn-code" target="_blank" rel="noopener noreferrer">Code</a></div>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card" data-category="Database Systems">
+                    <div class="project-img-wrapper"><img src="assets/images/projects/hotel_booking.jpg"
+                            alt="Hotel Booking Management System" class="project-img" loading="lazy">
+                        <div class="project-img-overlay"></div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-header"><span class="project-cat-badge">Database Systems</span>
+                            <h3 class="project-title">Hotel Booking System</h3>
+                            <div class="project-tagline">Room Reservation and Database Management</div>
+                            <p class="project-desc">A reservation system concept for organizing room information,
+                                customer records, booking details, and availability.</p>
+                        </div>
+                        <div class="project-footer">
+                            <div class="tech-tags"><span class="tech-tag">PHP</span><span
+                                    class="tech-tag">MySQL</span><span class="tech-tag">HTML</span><span
+                                    class="tech-tag">CSS</span><span class="tech-tag">JavaScript</span></div>
+                            <div class="project-actions"><button type="button" class="btn-demo jl-open-demo"
+                                    data-demo="hotel">Live Demo ↗</button><a href="https://github.com/" class="btn-code"
+                                    target="_blank" rel="noopener noreferrer">Code</a></div>
+                        </div>
+                    </div>
+                </article>
+                <article class="project-card" data-category="IoT & Embedded Systems">
+                    <div class="project-img-wrapper"><img src="assets/images/projects/arduino_dispenser.svg"
+                            alt="Arduino Automatic Water Dispenser" class="project-img" loading="lazy">
+                        <div class="project-img-overlay"></div>
+                    </div>
+                    <div class="project-body">
+                        <div class="project-header"><span class="project-cat-badge">IoT &amp; Embedded Systems</span>
+                            <h3 class="project-title">Arduino Water Dispenser</h3>
+                            <div class="project-tagline">Sensor-Based Automatic Dispensing</div>
+                            <p class="project-desc">An Arduino-based project that uses a sensor to detect a nearby
+                                object and activate a dispensing mechanism automatically.</p>
+                        </div>
+                        <div class="project-footer">
+                            <div class="tech-tags"><span class="tech-tag">Arduino</span><span
+                                    class="tech-tag">C++</span><span class="tech-tag">Ultrasonic Sensor</span><span
+                                    class="tech-tag">Relay</span><span class="tech-tag">IoT</span></div>
+                            <div class="project-actions"><button type="button" class="btn-demo jl-open-demo"
+                                    data-demo="iot">Live Demo ↗</button><a href="https://github.com/" class="btn-code"
+                                    target="_blank" rel="noopener noreferrer">Code</a></div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <section class="section portfolio-extra-section" id="problem-solving">
+        <div class="container">
+            <div class="section-header"> <span class="section-tag">// 04. Analytical Thinking</span>
+                <h2 class="section-title">Problem <span class="neon-text">Solving</span></h2>
+                <p class="section-desc">How I approach common development challenges and work toward practical, reliable
+                    solutions.</p>
+            </div>
+            <div class="extra-grid">
+                <article class="extra-card">
+                    <div class="extra-icon">🔍</div><span class="extra-tag">STEP 01</span>
+                    <h3>Identify the Problem</h3>
+                    <p>I identify what is not working as expected, review requirements, observe the problem, and
+                        determine which part of the system needs attention.</p>
+                </article>
+                <article class="extra-card">
+                    <div class="extra-icon">🧩</div><span class="extra-tag">STEP 02</span>
+                    <h3>Analyze Possible Causes</h3>
+                    <p>I check the related code, user inputs, database records, and system behavior. Breaking a large
+                        issue into smaller parts helps me find possible causes.</p>
+                </article>
+                <article class="extra-card">
+                    <div class="extra-icon">🛠️</div><span class="extra-tag">STEP 03</span>
+                    <h3>Develop a Solution</h3>
+                    <p>I try a suitable solution, keep code organized, validate inputs, and make changes without
+                        unnecessarily affecting other features.</p>
+                </article>
+                <article class="extra-card">
+                    <div class="extra-icon">✅</div><span class="extra-tag">STEP 04</span>
+                    <h3>Test and Improve</h3>
+                    <p>I test the updated feature, check different inputs, and correct remaining errors to make the
+                        application more dependable and easier to use.</p>
+                </article>
+            </div>
+            <article class="extra-card" style="margin-top:24px">
+                <h3>Examples From My Projects</h3>
+                <ul class="extra-list">
+                    <li><span><strong>Food Ordering System:</strong> Organizing menu information and checking order
+                            inputs to help reduce incorrect order details.</span></li>
+                    <li><span><strong>Hotel Booking System:</strong> Organizing customer and reservation records while
+                            checking room availability.</span></li>
+                    <li><span><strong>Arduino Water Dispenser:</strong> Checking sensor readings and output behavior to
+                            improve automatic dispensing.</span></li>
+                </ul>
+            </article>
+        </div>
+    </section>
+    <section class="section portfolio-extra-section" id="technical-skills">
+        <div class="container">
+            <div class="section-header"><span class="section-tag">// 05. Technical Foundation</span>
+                <h2 class="section-title">Basic <span class="neon-text">Technical Skills</span></h2>
+                <p class="section-desc">The tools and technologies I have studied and practiced through coursework and
+                    project development.</p>
+            </div>
+            <div class="extra-grid">
+                <article class="extra-card">
+                    <div class="extra-icon">🌐</div>
+                    <h3>Web Development</h3>
+                    <p>I use HTML to structure pages, CSS to style layouts, JavaScript to add interactive features, and
+                        PHP for server-side logic.</p>
+                    <div class="basic-skill-list">
+                        <span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>PHP</span><span>Responsive
+                            Design</span>
+                    </div>
+                </article>
+                <article class="extra-card">
+                    <div class="extra-icon">🗄️</div>
+                    <h3>Database Management</h3>
+                    <p>I practice organizing information into tables, connecting related records, and using database
+                        queries to manage stored data.</p>
+                    <div class="basic-skill-list"><span>MySQL</span><span>SQL Basics</span><span>Table
+                            Design</span><span>CRUD Operations</span><span>Data Validation</span></div>
+                </article>
+                <article class="extra-card">
+                    <div class="extra-icon">🤖</div>
+                    <h3>Hardware and IoT</h3>
+                    <p>I have experience with an Arduino project that uses a sensor and a control component to perform
+                        an automatic dispensing task.</p>
+                    <div class="basic-skill-list"><span>Arduino</span><span>C++ Basics</span><span>Ultrasonic
+                            Sensor</span><span>Relay</span><span>Hardware Testing</span></div>
+                </article>
+                <article class="extra-card">
+                    <div class="extra-icon">🧰</div>
+                    <h3>Development and Troubleshooting</h3>
+                    <p>I practice finding errors, testing features, organizing files, and improving my work based on
+                        feedback and test results.</p>
+                    <div class="basic-skill-list"><span>Debugging</span><span>Testing</span><span>Problem
+                            Solving</span><span>GitHub Basics</span><span>Documentation</span></div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <section class="section portfolio-extra-section" id="reflection">
+        <div class="container">
+            <div class="section-header"><span class="section-tag">// 06. Personal Growth</span>
+                <h2 class="section-title">My <span class="neon-text">Reflection</span></h2>
+                <p class="section-desc">Lessons I have learned as an Information Technology student while working on
+                    academic projects.</p>
+            </div>
+            <article class="extra-card reflection-card">
+                <div class="extra-icon">💭</div>
+                <p>As an Information Technology student, I have learned that developing a system requires more than
+                    writing code. It also requires planning, patience, testing, and understanding the needs of the
+                    people who will use the application.</p>
+                <p>Working on web development projects helped me understand how different parts of a website work
+                    together. I learned that the interface should be clear and easy to navigate, while the system logic
+                    and database should handle information properly. Even small errors can affect how users experience
+                    an application.</p>
+                <p>My database project helped me appreciate the importance of organizing information and checking data
+                    carefully. My Arduino project also showed me that hardware and software must work together
+                    correctly. Testing the system and checking its behavior are important parts of development.</p>
+                <p>I also realized that problem solving takes time. When a feature does not work, I need to review the
+                    code, identify possible causes, and test different solutions instead of making random changes.
+                    Asking for feedback and learning from mistakes can help me improve my work.</p>
+                <p>Moving forward, I want to strengthen my programming skills, learn more development tools, and gain
+                    experience working on real projects. These experiences motivate me to continue learning and prepare
+                    for a future career in the IT industry.</p>
+            </article>
+        </div>
+    </section>
+    <section class="section portfolio-extra-section" id="career-plan">
+        <div class="container">
+            <div class="section-header"><span class="section-tag">// 07. Future Goals</span>
+                <h2 class="section-title">My <span class="neon-text">Career Plan</span></h2>
+                <p class="section-desc">My goals for improving my skills, gaining professional experience, and building
+                    a career in Information Technology.</p>
+            </div>
+            <div class="career-timeline">
+                <article class="career-step">
+                    <div class="career-step-number">01</div>
+                    <div><span class="extra-tag">SHORT-TERM GOAL</span>
+                        <h3>Complete My BSIT Degree</h3>
+                        <p>My first goal is to complete my degree and continue improving the skills I learned in school.
+                            I plan to review my projects, practice coding, and prepare a professional portfolio.</p>
+                    </div>
+                </article>
+                <article class="career-step">
+                    <div class="career-step-number">02</div>
+                    <div><span class="extra-tag">ENTRY-LEVEL EXPERIENCE</span>
+                        <h3>Gain Experience in the IT Industry</h3>
+                        <p>I want to apply for an internship or entry-level position where I can learn from experienced
+                            professionals and improve my teamwork, communication, troubleshooting, and development
+                            skills.</p>
+                    </div>
+                </article>
+                <article class="career-step">
+                    <div class="career-step-number">03</div>
+                    <div><span class="extra-tag">SKILL DEVELOPMENT</span>
+                        <h3>Become a Better Developer</h3>
+                        <p>I plan to study modern web technologies, database management, software testing, and secure
+                            coding. I also want to improve my knowledge through personal projects and training.</p>
+                    </div>
+                </article>
+                <article class="career-step">
+                    <div class="career-step-number">04</div>
+                    <div><span class="extra-tag">LONG-TERM GOAL</span>
+                        <h3>Build a Successful IT Career</h3>
+                        <p>My long-term goal is to become a capable IT professional who can develop useful, secure, and
+                            reliable systems and continue learning as technology changes.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="interview">
+        <div class="container">
+            <div class="section-header"><span class="section-tag">// 08. Career Readiness</span>
+                <h2 class="section-title">Mock <span class="neon-text">Interview</span></h2>
+                <p class="section-desc">Watch my mock interview demonstration and learn more about my communication
+                    skills, experience, and goals.</p>
+            </div>
+            <div class="interview-layout">
+                <div class="interview-player-col">
+                    <div class="interview-player-card">
+                        <div class="interview-player-header">
+                            <div class="interview-player-header-left"><span class="interview-live-dot"></span><span
+                                    class="interview-player-label">MOCK INTERVIEW SESSION</span></div><span
+                                class="interview-player-meta">IT Student · BSIT 4th Year</span>
+                        </div>
+                        <div class="interview-video-wrapper"> <video id="interviewVideo" class="interview-video"
+                                controls preload="metadata" playsinline poster="assets/images/profile.jpg">
+                                <source src="assets/videos/jl.mp4" type="video/mp4"> Your browser does not support HTML5
+                                video.
+                            </video>
+                            <div class="interview-play-overlay" id="interviewPlayOverlay" role="button" tabindex="0"
+                                aria-label="Play mock interview video">
+                                <div class="interview-play-btn"><svg width="28" height="28" viewBox="0 0 24 24"
+                                        fill="currentColor">
+                                        <polygon points="5 3 19 12 5 21 5 3" />
+                                    </svg></div>
+                                <p class="interview-play-label">Click to Play</p>
+                            </div>
+                        </div>
+                        <div class="interview-player-footer">
+                            <div class="interview-footer-item">◷ Full Session Recording</div>
+                            <div class="interview-footer-item">♙ Interviewer + Candidate</div>
+                            <div class="interview-footer-item">〽 Live Q&amp;A Format</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="interview-sidebar">
+                    <div class="interview-sidebar-card">
+                        <h4 class="interview-sidebar-title">✓ Topics Covered</h4>
+                        <ul class="interview-topics">
+                            <li class="interview-topic-item"><span class="interview-topic-num">01</span><span>Self
+                                    Introduction &amp; Background</span></li>
+                            <li class="interview-topic-item"><span class="interview-topic-num">02</span><span>Technical
+                                    Skills &amp; IT Competencies</span></li>
+                            <li class="interview-topic-item"><span class="interview-topic-num">03</span><span>Project
+                                    Experience &amp; Achievements</span></li>
+                            <li class="interview-topic-item"><span class="interview-topic-num">04</span><span>Strengths,
+                                    Weaknesses &amp; Goals</span></li>
+                            <li class="interview-topic-item"><span
+                                    class="interview-topic-num">05</span><span>Situational &amp; Behavioral
+                                    Questions</span></li>
+                        </ul>
+                    </div>
+                    <div class="interview-sidebar-card">
+                        <h4 class="interview-sidebar-title">★ Key Highlights</h4>
+                        <div class="interview-highlights">
+                            <div class="interview-highlight-item">
+                                <div class="interview-highlight-icon">🎯</div>
+                                <div>
+                                    <div class="interview-highlight-label">Confidence</div>
+                                    <div class="interview-highlight-bar">
+                                        <div class="interview-highlight-fill" style="width:88%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="interview-highlight-item">
+                                <div class="interview-highlight-icon">💬</div>
+                                <div>
+                                    <div class="interview-highlight-label">Communication</div>
+                                    <div class="interview-highlight-bar">
+                                        <div class="interview-highlight-fill" style="width:92%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="interview-highlight-item">
+                                <div class="interview-highlight-icon">🧠</div>
+                                <div>
+                                    <div class="interview-highlight-label">Technical Knowledge</div>
+                                    <div class="interview-highlight-bar">
+                                        <div class="interview-highlight-fill" style="width:85%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="interview-highlight-item">
+                                <div class="interview-highlight-icon">⚡</div>
+                                <div>
+                                    <div class="interview-highlight-label">Problem Solving</div>
+                                    <div class="interview-highlight-bar">
+                                        <div class="interview-highlight-fill" style="width:80%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <button type="button" class="btn btn-neon interview-resume-cta"
+                        onclick="openResumeModal()">Quick View Resume</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-header"><span class="section-tag">// 09. Communications</span>
+                <h2 class="section-title">Get In <span class="neon-text">Touch</span></h2>
+                <p class="section-desc">Have an internship opportunity, project collaboration, or inquiry? Feel free to
+                    contact me.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info-card">
+                    <h3>Direct Channels</h3>
+                    <div class="contact-method">
+                        <div class="contact-icon">✉</div>
+                        <div>
+                            <div class="contact-label">Email Address</div><a href="mailto:your-email@example.com"
+                                class="contact-value">your-email@example.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <div class="contact-label">Phone / Mobile</div>
+                            <div class="contact-value">Add your phone number</div>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <div class="contact-label">Location</div>
+                            <div class="contact-value">Philippines</div>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">🏛</div>
+                        <div>
+                            <div class="contact-label">Academic Institution</div>
+                            <div class="contact-value">Add your school name</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-card">
+                    <div class="toast-msg" id="form-feedback" role="status" aria-live="polite"></div>
+                    <form id="contact-form">
+                        <div class="form-group"><label class="form-label" for="sender-name">Your Full Name</label><input
+                                type="text" class="form-input" id="sender-name" name="name"
+                                placeholder="Enter your full name" autocomplete="name" required></div>
+                        <div class="form-group"><label class="form-label" for="sender-email">Email Address</label><input
+                                type="email" class="form-input" id="sender-email" name="email"
+                                placeholder="Enter your email" autocomplete="email" required></div>
+                        <div class="form-group"><label class="form-label" for="sender-subject">Subject</label><input
+                                type="text" class="form-input" id="sender-subject" name="subject"
+                                placeholder="e.g. Internship or Collaboration" required></div>
+                        <div class="form-group"><label class="form-label" for="sender-message">Message
+                                Content</label><textarea class="form-textarea" id="sender-message" name="message"
+                                placeholder="Write your message here..." required></textarea></div> <button
+                            type="submit" class="btn btn-neon" style="width:100%">Send Message ⚡</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-text">&copy; <span id="current-year"></span> Jhon Luis Carlos. Built with <span>HTML, CSS
+                    &amp; JavaScript</span>. Main theme: <span>Neon Blue</span>.</div>
+            <div class="footer-socials"> <a href="https://github.com/" class="social-link" target="_blank"
+                    rel="noopener noreferrer" title="GitHub Profile" aria-label="GitHub Profile"><svg width="20"
+                        height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg></a> <a href="https://www.linkedin.com/" class="social-link" target="_blank"
+                    rel="noopener noreferrer" title="LinkedIn Profile" aria-label="LinkedIn Profile"><svg width="20"
+                        height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                    </svg></a> </div>
+        </div>
+    </footer>
+    <div class="resume-modal-overlay" id="resumeModal" role="dialog" aria-modal="true"
+        aria-labelledby="resumeModalLabel">
+        <div class="resume-modal-container">
+            <div class="resume-modal-topbar">
+                <div class="resume-modal-topbar-left"><span class="resume-modal-badge">OFFICIAL RESUME</span><span
+                        class="resume-modal-filename" id="resumeModalLabel">Jhon_Luis_Carlos_Resume.jpg</span></div>
+                <div class="resume-modal-topbar-actions"> <button type="button" class="resume-btn-zoom"
+                        id="resumeZoomBtn" onclick="toggleResumeZoom()"><span id="resumeZoomLabel">Zoom
+                            In</span></button> <a href="assets/images/resume.jpg" download="Jhon_Luis_Carlos_Resume.jpg"
+                        class="resume-btn-download">Download</a> <button type="button" class="resume-btn-close"
+                        id="resumeCloseBtn" onclick="closeResumeModal()" aria-label="Close resume">✕</button> </div>
+            </div>
+            <div class="resume-modal-body" id="resumeModalBody">
+                <div class="resume-img-wrapper" id="resumeImgWrapper"> <img src="assets/images/resume.jpg"
+                        alt="Jhon Luis Carlos Resume" class="resume-img" id="resumeImg" draggable="false">
+                    <div id="resumeImgError" style="display:none;padding:35px;color:var(--text-secondary)">Resume image
+                        could not be loaded. Place <code>resume.jpg</code> inside <code>assets/images/</code>.</div>
+                </div>
+            </div>
+            <div class="resume-modal-hint">Click image to zoom • Press <kbd>Esc</kbd> to close</div>
+        </div>
+    </div>
+
+    <div class="jl-modal" id="jlDemoModal" role="dialog" aria-modal="true" aria-labelledby="jlDemoTitle"
+        aria-describedby="jlDemoIntro">
+        <div class="jl-modal-panel">
+            <button type="button" class="jl-modal-close" data-jl-close aria-label="Close demo">×</button>
+            <div class="jl-demo-heading">
+                <div class="jl-demo-mark" id="jlDemoIcon" aria-hidden="true">⌘</div>
+                <div>
+                    <div class="jl-demo-kicker">Interactive prototype</div>
+                    <h2 id="jlDemoTitle">Project Live Demo</h2>
+                </div>
+            </div>
+            <p class="jl-intro" id="jlDemoIntro">Explore a sample project workflow. All values are simulated.</p>
+            <div id="jlDemoContent"></div>
+            <p class="jl-demo-note">Portfolio prototype • Uses sample data only. This demo does not submit an actual
+                order, create a hotel reservation, store personal information, connect to a production database, or
+                control physical Arduino hardware.</p>
+        </div>
+    </div>
+    <div class="jl-modal jl-certificate-viewer" id="jlCertificateModal" role="dialog" aria-modal="true"
+        aria-label="Certificate image preview">
+        <div class="jl-modal-panel"><button type="button" class="jl-modal-close" data-jl-close
+                aria-label="Close image preview">×</button><img id="jlCertificatePreview" src=""
+                alt="Certificate preview"></div>
+    </div>
+    <script>
+        (() => {
+            "use strict";
+            const demoModal = document.getElementById('jlDemoModal');
+            const demoTitle = document.getElementById('jlDemoTitle');
+            const demoIntro = document.getElementById('jlDemoIntro');
+            const demoContent = document.getElementById('jlDemoContent');
+            const demoIcon = document.getElementById('jlDemoIcon');
+            const certModal = document.getElementById('jlCertificateModal');
+            const certPreview = document.getElementById('jlCertificatePreview');
+            let lastFocus = null;
+            let iotFillTimer = null;
+            const peso = value => new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', maximumFractionDigits: 0 }).format(value);
+            const safeNumber = (value, fallback, min, max) => { const parsed = Number(value); return Number.isFinite(parsed) ? Math.min(max, Math.max(min, parsed)) : fallback; };
+            function showModal(modal) { lastFocus = document.activeElement; modal.classList.add('active'); document.body.classList.add('jl-modal-open'); const close = modal.querySelector('[data-jl-close]'); if (close) close.focus(); }
+            function hideModal(modal) { modal.classList.remove('active'); if (modal === demoModal && iotFillTimer) { window.clearInterval(iotFillTimer); iotFillTimer = null; } if (!document.querySelector('.jl-modal.active')) document.body.classList.remove('jl-modal-open'); if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus(); }
+            document.querySelectorAll('.jl-certificate-open').forEach(button => button.addEventListener('click', () => { certPreview.src = button.dataset.image; certPreview.alt = button.dataset.title || 'Certificate preview'; showModal(certModal); }));
+            document.querySelectorAll('.jl-open-demo').forEach(button => button.addEventListener('click', () => {
+                const type = button.dataset.demo; let html = '';
+                if (type === 'food') {
+                    demoIcon.textContent = '🍽'; demoTitle.textContent = 'Tapseafood | Food Ordering';
+                    demoIntro.textContent = 'Build a sample meal order, choose customizations, and review the itemized total before checkout.';
+                    html = `<div class="jl-demo-layout"><div class="jl-demo-card"><div class="jl-demo-card-title">01 / Build your order</div>
+            <div class="jl-demo-field"><label for="jlMeal">Select a meal</label><select id="jlMeal"><option value="99" data-name="Classic Silog">Classic Silog — ₱99</option><option value="119" data-name="Chicken Silog">Chicken Silog — ₱119</option><option value="139" data-name="Bangus Silog">Bangus Silog — ₱139</option><option value="159" data-name="Special Seafood Meal">Special Seafood Meal — ₱159</option></select></div>
+            <div class="jl-demo-field"><label for="jlQty">Quantity</label><input id="jlQty" type="number" min="1" max="20" step="1" value="1" inputmode="numeric"></div>
+            <div class="jl-demo-field"><label for="jlNotes">Preparation preference</label><select id="jlNotes"><option>Regular preparation</option><option>Egg: sunny side up</option><option>Egg: scrambled</option><option>Less rice</option><option>No spicy sauce</option></select></div>
+            <div class="jl-product-chip"><div class="jl-product-chip-icon" aria-hidden="true">🥤</div><div class="jl-product-chip-copy"><strong>Reusable Drink Cup</strong><span>Washable cup · reusable product</span></div><span class="jl-product-chip-price">₱35</span></div>
+            <div class="jl-demo-checks"><label class="jl-demo-check"><input id="jlDrink" type="checkbox"> Add bottled water (+₱20)</label><label class="jl-demo-check"><input id="jlPackaging" type="checkbox"> Add eco-friendly packaging (+₱5)</label><label class="jl-demo-check"><input id="jlCup" type="checkbox"> Add reusable drink cup (+₱35)</label></div>
+            <div class="jl-demo-actions"><button type="button" class="jl-demo-primary" id="jlCalculateFood">Review order →</button><button type="button" class="jl-demo-secondary" id="jlResetFood">Reset</button></div></div>
+            <div class="jl-demo-card"><div class="jl-demo-card-title">02 / Order summary</div><div class="jl-demo-result" id="jlFoodResult" aria-live="polite"><div class="jl-demo-result-title">Your order <span class="jl-demo-status">Draft</span></div><p class="jl-demo-help">Choose your meal and preferences, then select “Review order” to generate an itemized sample summary.</p></div><p class="jl-demo-help">Sample menu pricing for demonstration purposes only.</p></div></div>`;
+                } else if (type === 'hotel') {
+                    demoIcon.textContent = '⌂'; demoTitle.textContent = 'Hotel Booking | Stay Estimator';
+                    demoIntro.textContent = 'Select your stay dates, room category, and guest count to preview an estimated booking.';
+                    html = `<div class="jl-demo-layout"><div class="jl-demo-card"><div class="jl-demo-card-title">01 / Plan your stay</div>
+            <div class="jl-demo-field"><label for="jlRoom">Room category</label><select id="jlRoom"><option value="1800" data-name="Standard Room">Standard Room — ₱1,800 / night</option><option value="2800" data-name="Deluxe Room">Deluxe Room — ₱2,800 / night</option><option value="4200" data-name="Family Suite">Family Suite — ₱4,200 / night</option></select></div>
+            <div class="jl-demo-field"><label for="jlCheckIn">Check-in date</label><input type="date" id="jlCheckIn" required></div><div class="jl-demo-field"><label for="jlCheckOut">Check-out date</label><input type="date" id="jlCheckOut" required></div>
+            <div class="jl-demo-field"><label for="jlGuests">Guests</label><select id="jlGuests"><option value="1">1 guest</option><option value="2" selected>2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option></select></div>
+            <div class="jl-demo-actions"><button type="button" class="jl-demo-primary" id="jlCalculateHotel">Calculate estimate →</button><button type="button" class="jl-demo-secondary" id="jlResetHotel">Reset dates</button></div></div>
+            <div class="jl-demo-card"><div class="jl-demo-card-title">02 / Stay estimate</div><div class="jl-demo-result" id="jlHotelResult" aria-live="polite"><div class="jl-demo-result-title">Booking preview <span class="jl-demo-status">Estimate only</span></div><p class="jl-demo-help">Choose check-in and check-out dates, then calculate your sample stay total.</p></div><p class="jl-demo-help">Rates are sample values. Taxes, availability, and actual hotel policies are not connected.</p></div></div>`;
+                } else {
+                    demoIcon.textContent = '⌁'; demoTitle.textContent = 'Arduino Water Dispenser | IoT Simulation';
+                    demoIntro.textContent = 'Simulate an ultrasonic sensor reading and observe the pump status using a configurable detection threshold.';
+                    html = `<div class="jl-iot-dashboard">
+            <div class="jl-iot-metrics" aria-label="Simulation telemetry">
+              <div class="jl-iot-metric"><span class="jl-iot-metric-label">Sensor distance</span><strong><span id="jlDistanceValue">8</span><small>cm</small></strong><span class="jl-iot-metric-foot">Ultrasonic reading</span></div>
+              <div class="jl-iot-metric"><span class="jl-iot-metric-label">Detection zone</span><strong><span id="jlThresholdValue">10</span><small>cm</small></strong><span class="jl-iot-metric-foot">Configured threshold</span></div>
+              <div class="jl-iot-metric"><span class="jl-iot-metric-label">Cup fill level</span><strong><span id="jlCupPercent">0</span><small>%</small></strong><span class="jl-iot-metric-foot">Simulated capacity</span></div>
+            </div>
+            <div class="jl-demo-layout jl-iot-layout">
+              <div class="jl-demo-card"><div class="jl-demo-card-title">01 / Configure sensor</div>
+                <div class="jl-demo-field"><label for="jlDistance">Object distance <strong><span id="jlDistanceLabel">8</span> cm</strong></label><input id="jlDistance" type="range" min="2" max="30" value="8" step="1" aria-describedby="jlDistanceHelp"><div class="jl-iot-range-labels"><span>2 cm · Near</span><span>30 cm · Far</span></div><p class="jl-demo-help" id="jlDistanceHelp">Move the slider to simulate a hand or cup approaching the sensor.</p></div>
+                <div class="jl-demo-field"><label for="jlThreshold">Pump activation threshold</label><select id="jlThreshold"><option value="5">5 cm — Precise detection</option><option value="10" selected>10 cm — Standard range</option><option value="15">15 cm — Extended range</option></select></div>
+                <div class="jl-iot-control-note"><span class="jl-iot-info-icon" aria-hidden="true">i</span><span>The pump activates when the measured distance is equal to or below the selected threshold.</span></div>
+                <div class="jl-demo-actions jl-iot-actions"><button type="button" class="jl-demo-primary" id="jlEmptyCup">Empty cup</button><button type="button" class="jl-demo-secondary" id="jlResetIot">Reset demo</button></div>
+              </div>
+              <div class="jl-demo-card"><div class="jl-demo-card-title">02 / Dispenser monitor</div>
+                <div class="jl-iot-statusbar"><span class="jl-iot-status-dot" id="jlIotStatusDot"></span><strong id="jlDispenserState" aria-live="polite">Standby · waiting for object</strong><span class="jl-iot-sim-badge">SIMULATED</span></div>
+                <div class="jl-dispenser-visual" id="jlDispenserVisual" aria-label="Animated simulated water dispenser and cup"><div class="jl-dispenser-unit"><span class="jl-dispenser-screen"><span>RANGE</span><strong id="jlSensorScreen">08 cm</strong></span><span class="jl-dispenser-nozzle"></span><span class="jl-water-stream"></span></div><div class="jl-cup-wrap"><div class="jl-demo-cup"><div class="jl-cup-water" id="jlCupWater"></div><span class="jl-cup-label">JL WATER</span></div><span class="jl-cup-caption" id="jlCupCaption">Empty cup</span></div></div>
+                <div class="jl-iot-fill-row"><span>Container capacity</span><strong><span id="jlCupFillLabel">0</span>%</strong></div><div class="jl-iot-fill-track" role="progressbar" aria-label="Cup fill level" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="jlCupProgress"><span id="jlCupProgressFill"></span></div>
+                <div class="jl-demo-result" id="jlPumpResult" aria-live="polite"></div>
+                <div class="jl-iot-legend"><span><i class="jl-legend-dot detected"></i> Object detected</span><span><i class="jl-legend-dot idle"></i> Standby</span></div>
+              </div>
+            </div>
+            <p class="jl-demo-help jl-iot-disclaimer">This is a front-end simulation for portfolio demonstration. It does not connect to an actual Arduino, ultrasonic sensor, relay, or water pump.</p>
+          </div>`;
+                }
+                demoContent.innerHTML = html; showModal(demoModal);
+                if (type === 'food') {
+                    const meal = document.getElementById('jlMeal'), qty = document.getElementById('jlQty'), notes = document.getElementById('jlNotes'), drink = document.getElementById('jlDrink'), packaging = document.getElementById('jlPackaging'), cup = document.getElementById('jlCup'), result = document.getElementById('jlFoodResult');
+                    document.getElementById('jlCalculateFood').addEventListener('click', () => {
+                        const quantity = safeNumber(qty.value, 1, 1, 20); qty.value = quantity;
+                        const unit = Number(meal.value), addOns = (drink.checked ? 20 : 0) + (packaging.checked ? 5 : 0) + (cup.checked ? 35 : 0), subtotal = unit * quantity, addOnTotal = addOns * quantity, total = subtotal + addOnTotal;
+                        result.innerHTML = `<div class="jl-demo-result-title">Order preview <span class="jl-demo-status">Ready to review</span></div><div class="jl-demo-line"><span>Meal</span><strong>${meal.selectedOptions[0].dataset.name}</strong></div><div class="jl-demo-line"><span>Preparation</span><strong>${notes.value}</strong></div><div class="jl-demo-line"><span>Items</span><strong>${quantity} × ${peso(unit)}</strong></div><div class="jl-demo-line"><span>Meal subtotal</span><strong>${peso(subtotal)}</strong></div><div class="jl-demo-line"><span>Add-ons</span><strong>${peso(addOnTotal)}</strong></div>${cup.checked ? '<div class="jl-demo-line"><span>Product</span><strong>Reusable Drink Cup</strong></div>' : ''}<div class="jl-demo-total"><span>Estimated total</span><strong>${peso(total)}</strong></div><p class="jl-demo-help">Demo summary only. Your order has not been submitted.</p>`;
+                    });
+                    document.getElementById('jlResetFood').addEventListener('click', () => { meal.selectedIndex = 0; qty.value = 1; notes.selectedIndex = 0; drink.checked = false; packaging.checked = false; cup.checked = false; result.innerHTML = '<div class="jl-demo-result-title">Your order <span class="jl-demo-status">Draft</span></div><p class="jl-demo-help">Choose your meal and preferences, then select “Review order”.</p>'; });
+                }
+                if (type === 'hotel') {
+                    const room = document.getElementById('jlRoom'), checkIn = document.getElementById('jlCheckIn'), checkOut = document.getElementById('jlCheckOut'), guests = document.getElementById('jlGuests'), result = document.getElementById('jlHotelResult');
+                    const today = new Date(); today.setMinutes(today.getMinutes() - today.getTimezoneOffset()); const todayValue = today.toISOString().slice(0, 10); const tomorrow = new Date(today); tomorrow.setDate(tomorrow.getDate() + 1); const tomorrowValue = tomorrow.toISOString().slice(0, 10);
+                    checkIn.min = todayValue; checkIn.value = todayValue; checkOut.min = tomorrowValue; checkOut.value = tomorrowValue;
+                    checkIn.addEventListener('change', () => { if (!checkIn.value) return; const earliest = new Date(checkIn.value + 'T12:00:00'); earliest.setDate(earliest.getDate() + 1); const value = `${earliest.getFullYear()}-${String(earliest.getMonth() + 1).padStart(2, '0')}-${String(earliest.getDate()).padStart(2, '0')}`; checkOut.min = value; if (!checkOut.value || checkOut.value < value) checkOut.value = value; });
+                    document.getElementById('jlCalculateHotel').addEventListener('click', () => {
+                        if (!checkIn.value || !checkOut.value) { result.innerHTML = '<div class="jl-demo-result-title">Date required</div><p class="jl-demo-help">Please choose both check-in and check-out dates.</p>'; return; }
+                        const startDate = new Date(checkIn.value + 'T12:00:00'), endDate = new Date(checkOut.value + 'T12:00:00'), nights = Math.round((endDate - startDate) / 86400000);
+                        if (nights < 1) { result.innerHTML = '<div class="jl-demo-result-title">Check your dates</div><p class="jl-demo-help">Check-out must be at least one day after check-in.</p>'; return; }
+                        if (nights > 30) { result.innerHTML = '<div class="jl-demo-result-title">Stay limit</div><p class="jl-demo-help">For this sample, choose a stay of 30 nights or fewer.</p>'; return; }
+                        const rate = Number(room.value), total = rate * nights, formatDate = date => date.toLocaleDateString('en-PH', { year: 'numeric', month: 'short', day: 'numeric' });
+                        result.innerHTML = `<div class="jl-demo-result-title">Stay estimate <span class="jl-demo-status">Calculated</span></div><div class="jl-demo-line"><span>Room</span><strong>${room.selectedOptions[0].dataset.name}</strong></div><div class="jl-demo-line"><span>Check-in</span><strong>${formatDate(startDate)}</strong></div><div class="jl-demo-line"><span>Check-out</span><strong>${formatDate(endDate)}</strong></div><div class="jl-demo-line"><span>Guests</span><strong>${guests.value}</strong></div><div class="jl-demo-line"><span>Rate</span><strong>${peso(rate)} × ${nights} nights</strong></div><div class="jl-demo-total"><span>Estimated total</span><strong>${peso(total)}</strong></div><p class="jl-demo-help">No room availability was checked and no reservation has been created.</p>`;
+                    });
+                    document.getElementById('jlResetHotel').addEventListener('click', () => { checkIn.value = todayValue; checkOut.value = tomorrowValue; checkOut.min = tomorrowValue; room.selectedIndex = 0; guests.value = '2'; result.innerHTML = '<div class="jl-demo-result-title">Booking preview <span class="jl-demo-status">Estimate only</span></div><p class="jl-demo-help">Choose your stay details and calculate an estimate.</p>'; });
+                }
+                if (type === 'iot') {
+                    if (iotFillTimer) { window.clearInterval(iotFillTimer); iotFillTimer = null; }
+                    const slider = document.getElementById('jlDistance');
+                    const threshold = document.getElementById('jlThreshold');
+                    const fillWater = document.getElementById('jlCupWater');
+                    const visual = document.getElementById('jlDispenserVisual');
+                    const statusText = document.getElementById('jlDispenserState');
+                    const pumpResult = document.getElementById('jlPumpResult');
+                    const progress = document.getElementById('jlCupProgress');
+                    const progressFill = document.getElementById('jlCupProgressFill');
+                    let fillLevel = 0;
+                    let lastPumpOn = false;
+                    const stopFilling = () => { if (iotFillTimer) { window.clearInterval(iotFillTimer); iotFillTimer = null; } };
+                    const render = () => {
+                        const distance = Number(slider.value);
+                        const limit = Number(threshold.value);
+                        const detected = distance <= limit;
+                        const full = fillLevel >= 100;
+                        const pumpOn = detected && !full;
+                        document.getElementById('jlDistanceValue').textContent = distance;
+                        document.getElementById('jlDistanceLabel').textContent = distance;
+                        document.getElementById('jlThresholdValue').textContent = limit;
+                        document.getElementById('jlCupPercent').textContent = Math.round(fillLevel);
+                        document.getElementById('jlCupFillLabel').textContent = Math.round(fillLevel);
+                        document.getElementById('jlSensorScreen').textContent = `${String(distance).padStart(2, '0')} cm`;
+                        fillWater.style.height = `${fillLevel}%`;
+                        progressFill.style.width = `${fillLevel}%`;
+                        progress.setAttribute('aria-valuenow', String(Math.round(fillLevel)));
+                        visual.classList.toggle('is-flowing', pumpOn);
+                        visual.classList.toggle('is-detected', detected);
+                        document.getElementById('jlCupCaption').textContent = full ? 'Cup full' : fillLevel > 0 ? `${Math.round(fillLevel)}% filled` : 'Empty cup';
+                        document.getElementById('jlIotStatusDot').classList.toggle('is-on', pumpOn);
+                        statusText.textContent = full ? 'Cycle complete · cup full' : pumpOn ? 'Dispensing · pump active' : detected ? 'Object detected · ready' : 'Standby · waiting for object';
+                        pumpResult.innerHTML = `<div class="jl-demo-result-title">Controller output <span class="jl-demo-status ${pumpOn ? '' : 'off'}">${pumpOn ? 'PUMP ON' : 'PUMP OFF'}</span></div><div class="jl-demo-line"><span>Sensor reading</span><strong>${distance} cm</strong></div><div class="jl-demo-line"><span>Trigger threshold</span><strong>≤ ${limit} cm</strong></div><div class="jl-demo-line"><span>Object detection</span><strong>${detected ? 'Within range' : 'Out of range'}</strong></div><div class="jl-demo-line"><span>Dispensing cycle</span><strong>${full ? 'Complete' : pumpOn ? 'In progress' : fillLevel > 0 ? 'Paused' : 'Ready'}</strong></div><p class="jl-demo-help">${full ? 'The cup reached its simulated capacity. Empty the cup to start another cycle.' : pumpOn ? 'The object is within range. The simulated pump is filling the cup gradually.' : detected ? 'The object is detected, but the cup is full.' : 'The object is beyond the threshold. The simulated pump is off.'}</p>`;
+                        lastPumpOn = pumpOn;
+                    };
+                    const syncPump = () => {
+                        const pumpShouldRun = Number(slider.value) <= Number(threshold.value) && fillLevel < 100;
+                        if (pumpShouldRun && !iotFillTimer) {
+                            iotFillTimer = window.setInterval(() => {
+                                fillLevel = Math.min(100, fillLevel + 2);
+                                render();
+                                if (fillLevel >= 100) stopFilling();
+                            }, 180);
+                        } else if (!pumpShouldRun) stopFilling();
+                        render();
+                    };
+                    slider.addEventListener('input', syncPump);
+                    threshold.addEventListener('change', syncPump);
+                    document.getElementById('jlEmptyCup').addEventListener('click', () => { stopFilling(); fillLevel = 0; syncPump(); });
+                    document.getElementById('jlResetIot').addEventListener('click', () => { stopFilling(); slider.value = 8; threshold.value = '10'; fillLevel = 0; syncPump(); });
+                    syncPump();
+                }
+            }));
+            document.querySelectorAll('[data-jl-close]').forEach(button => button.addEventListener('click', () => hideModal(button.closest('.jl-modal'))));
+            [demoModal, certModal].forEach(modal => modal.addEventListener('click', event => { if (event.target === modal) hideModal(modal); }));
+            document.addEventListener('keydown', event => { if (event.key === 'Escape') [demoModal, certModal].forEach(modal => { if (modal.classList.contains('active')) hideModal(modal); }); });
+        })();
+    </script>
+
+    <script> "use strict"; /* Footer year */ document.getElementById("current-year").textContent = new Date().getFullYear(); /* Mobile navigation */ const mobileToggle = document.getElementById("mobile-toggle"); const navLinksContainer = document.getElementById("nav-links"); const navbar = document.getElementById("navbar"); function closeMobileNav() { navLinksContainer.classList.remove("active"); mobileToggle.setAttribute("aria-expanded", "false"); mobileToggle.textContent = "☰"; } mobileToggle.addEventListener("click", () => { const open = navLinksContainer.classList.toggle("active"); mobileToggle.setAttribute("aria-expanded", String(open)); mobileToggle.textContent = open ? "✕" : "☰"; }); navLinksContainer.querySelectorAll("a").forEach(link => { link.addEventListener("click", closeMobileNav); }); document.addEventListener("click", event => { if (!navbar.contains(event.target)) closeMobileNav(); }); window.addEventListener("resize", () => { if (window.innerWidth > 850) closeMobileNav(); }); /* Navbar shadow */ function updateNavbar() { navbar.classList.toggle("scrolled", window.scrollY > 20); } window.addEventListener("scroll", updateNavbar, { passive: true }); updateNavbar(); /* Active navigation section */ const sectionObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (!entry.isIntersecting) return; document.querySelectorAll(".nav-link").forEach(link => { link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id); }); }); }, { rootMargin: "-25% 0px -65% 0px", threshold: 0 }); document.querySelectorAll("section[id]").forEach(section => { sectionObserver.observe(section); }); /* Animated role text */ const dynamicText = document.getElementById("dynamic-text"); const roles = ["IT Student", "Web Developer", "Systems Developer", "IoT Enthusiast"]; let roleIndex = 0; let charIndex = roles[0].length; let deleting = false; function typeRole() { if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { dynamicText.textContent = "IT Student"; return; } const current = roles[roleIndex]; if (deleting) { charIndex--; } else { charIndex++; } dynamicText.textContent = current.slice(0, charIndex); let delay = deleting ? 45 : 85; if (!deleting && charIndex === current.length) { deleting = true; delay = 1500; } else if (deleting && charIndex === 0) { deleting = false; roleIndex = (roleIndex + 1) % roles.length; delay = 350; } window.setTimeout(typeRole, delay); } window.setTimeout(typeRole, 1800); /* Skill filters */ const skillFilterButtons = document.querySelectorAll("#skill-filters [data-filter]"); const skillCards = document.querySelectorAll(".skill-card"); skillFilterButtons.forEach(button => { button.addEventListener("click", () => { const filter = button.dataset.filter; skillFilterButtons.forEach(item => item.classList.toggle("active", item === button)); skillCards.forEach(card => { const visible = filter === "all" || card.dataset.category === filter; card.classList.toggle("is-hidden", !visible); }); }); }); /* Project filters */ const projectFilterButtons = document.querySelectorAll("#project-filters [data-filter]"); const projectCards = document.querySelectorAll(".project-card"); projectFilterButtons.forEach(button => { button.addEventListener("click", () => { const filter = button.dataset.filter; projectFilterButtons.forEach(item => item.classList.toggle("active", item === button)); projectCards.forEach(card => { const visible = filter === "all" || card.dataset.category === filter; card.classList.toggle("is-hidden", !visible); if (visible) { card.style.animation = "none"; void card.offsetWidth; card.style.animation = ""; } }); }); }); /* Animate proficiency bars when visible */ const progressObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (!entry.isIntersecting) return; const bar = entry.target; bar.style.width = bar.dataset.width || "0%"; progressObserver.unobserve(bar); }); }, { threshold: 0.3 }); document.querySelectorAll(".progress-bar").forEach(bar => { progressObserver.observe(bar); }); /* Subtle scroll reveal */ if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) { const revealObserver = new IntersectionObserver(entries => { entries.forEach(entry => { if (!entry.isIntersecting) return; entry.target.classList.add("visible"); revealObserver.unobserve(entry.target); }); }, { threshold: 0.08 }); document.querySelectorAll(".about-card,.stat-box,.skills-highlight-card,.skill-card,.project-card,.extra-card,.career-step,.interview-player-card,.interview-sidebar-card,.contact-info-card,.contact-form-card").forEach(element => { element.classList.add("reveal"); revealObserver.observe(element); }); } /* Mock interview video overlay */ const interviewVideo = document.getElementById("interviewVideo"); const interviewOverlay = document.getElementById("interviewPlayOverlay"); function playInterviewVideo() { if (!interviewVideo) return; interviewVideo.play().catch(() => { interviewOverlay.style.display = "flex"; }); } interviewOverlay.addEventListener("click", playInterviewVideo); interviewOverlay.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); playInterviewVideo(); } }); interviewVideo.addEventListener("play", () => { interviewOverlay.style.display = "none"; }); interviewVideo.addEventListener("pause", () => { if (!interviewVideo.ended) interviewOverlay.style.display = "flex"; }); interviewVideo.addEventListener("ended", () => { interviewOverlay.style.display = "flex"; }); /* Resume modal */ const resumeModal = document.getElementById("resumeModal"); const resumeImage = document.getElementById("resumeImg"); const resumeZoomLabel = document.getElementById("resumeZoomLabel"); const resumeCloseButton = document.getElementById("resumeCloseBtn"); let previousFocus = null; function openResumeModal() { previousFocus = document.activeElement; resumeModal.classList.add("active"); document.body.classList.add("modal-open"); resumeCloseButton.focus(); } function closeResumeModal() { resumeModal.classList.remove("active"); document.body.classList.remove("modal-open"); resumeImage.classList.remove("zoomed"); resumeZoomLabel.textContent = "Zoom In"; if (previousFocus && typeof previousFocus.focus === "function") previousFocus.focus(); } function toggleResumeZoom() { const zoomed = resumeImage.classList.toggle("zoomed"); resumeZoomLabel.textContent = zoomed ? "Zoom Out" : "Zoom In"; } resumeImage.addEventListener("click", toggleResumeZoom); resumeImage.addEventListener("error", () => { resumeImage.style.display = "none"; document.getElementById("resumeImgError").style.display = "block"; }); resumeModal.addEventListener("click", event => { if (event.target === resumeModal) closeResumeModal(); }); document.addEventListener("keydown", event => { if (event.key === "Escape" && resumeModal.classList.contains("active")) { closeResumeModal(); } }); /* Contact form: opens the visitor's email application. Replace this placeholder with your actual email address. */ document.getElementById("contact-form").addEventListener("submit", event => { event.preventDefault(); const name = document.getElementById("sender-name").value.trim(); const email = document.getElementById("sender-email").value.trim(); const subject = document.getElementById("sender-subject").value.trim(); const message = document.getElementById("sender-message").value.trim(); const feedback = document.getElementById("form-feedback"); const recipient = "your-email@example.com"; if (recipient === "your-email@example.com") { feedback.textContent = "Please replace your-email@example.com in the HTML with your actual email address first."; feedback.style.display = "block"; return; } const body = ["Name: " + name, "Email: " + email, "", message].join("\n"); const mailto = "mailto:" + recipient + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body); feedback.textContent = "Opening your email application..."; feedback.style.display = "block"; window.location.href = mailto; }); </script>
+</body>
+
+</html>
